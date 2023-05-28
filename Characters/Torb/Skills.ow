@@ -1,0 +1,33 @@
+rule("[Torb] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Torbjörn;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 50;
+		Distance Between(Event Player, Vector(39.261, 9.471, -87.568)) <= 8;
+		Global.Heart < Global.PowerCoreLevel;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(1, Abort When False);
+		Play Effect(All Players(All Teams), Lúcio Sound Barrier Cast Effect, Color(White), Vector(39.261, 8, -87.568), 2);
+		Wait(1, Abort When False);
+		Play Effect(All Players(All Teams), Lúcio Sound Barrier Cast Effect, Color(White), Vector(39.261, 8, -87.568), 4);
+		Wait(1, Abort When False);
+		Play Effect(All Players(All Teams), Lúcio Sound Barrier Cast Effect, Color(White), Vector(39.261, 8, -87.568), 8);
+		Event Player.MagicPts -= 50;
+		Global.Heart += 2;
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 50 Mp to cast \"Advance Repair\"", Hero Icon String(Hero(
+			Torbjörn)), Event Player));
+		Loop If Condition Is True;
+	}
+}

@@ -1,0 +1,17 @@
+rule("[All World] Bots Move")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	actions
+	{
+		Start Throttle In Direction(Event Player, Direction Towards(Event Player, Vector(37.131, 9.703, -87.038)), 1, To World,
+			Replace existing throttle, Direction and Magnitude);
+		Start Facing(Event Player, Direction Towards(Event Player, Closest Player To(Eye Position(Event Player), Team 2)), 300, To World,
+			Direction and Turn Rate);
+	}
+}

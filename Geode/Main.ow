@@ -1,0 +1,27 @@
+rule("[Geode] Main")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(-1.364, 7.698, -72.803)) <= 2.500;
+		Event Player.Item_Geode >= 5;
+		Is Button Held(Event Player, Button(Reload)) == True;
+	}
+
+	actions
+	{
+		Wait(0.600, Abort When False);
+		Event Player.Item_Geode -= 5;
+		Event Player.GeodeRandomItem = Random Integer(1, 100);
+		Wait(0.050, Ignore Condition);
+		Event Player.GeodeRandomItem = 0;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 30);
+		Loop If Condition Is True;
+	}
+}

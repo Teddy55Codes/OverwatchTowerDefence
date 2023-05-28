@@ -1,0 +1,20 @@
+rule("[Enchant] Hud and Force")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Winston Tesla Cannon Sound, Color(White), Vector(96, 17, -23), 30,
+			Visible To Position and Radius);
+		Create Effect(All Players(All Teams), Ring, Color(Blue), Vector(96.735, 17.116, -22.764), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Enhancement] +1 Enhancement Level -{0} Mythril Ore (Hold Reload)", 2),
+			Vector(96.735, 17.116, -22.764), 1, Clip Against Surfaces, Visible To Position and String, Color(Purple), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Blue), Vector(6.010, 6.213, -97.657), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String(
+			"[Force Enhancement] +1 Enhancement Level -{0} Mythril Ore (Hold Reload)", 20), Vector(6.010, 6.213, -97.657), 1,
+			Clip Against Surfaces, Visible To Position and String, Color(Red), Default Visibility);
+	}
+}

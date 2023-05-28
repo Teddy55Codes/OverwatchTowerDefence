@@ -1,0 +1,58 @@
+rule("[Lu] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Lúcio;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 200;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+		Global.accelerateskills == 0;
+	}
+
+	actions
+	{
+		Event Player.MagicPts -= 200;
+		Global.accelerateskills = 1;
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 200 Mp to cast \"Accelerate\"", Hero Icon String(Hero(Lúcio)),
+			Event Player));
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Wait(6.500, Ignore Condition);
+		Global.accelerateskills = 0;
+	}
+}
+
+rule("[Lu] Skills 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.BuffPenalty == 2;
+		Global.accelerateskills == 1;
+	}
+
+	actions
+	{
+		Wait(0.500, Ignore Condition);
+		Play Effect(All Players(All Teams), Doomfist Meteor Strike Impact Effect, Color(White), Event Player, 3);
+		Event Player.Speed += 200;
+		Set Move Speed(Event Player, Event Player.Speed);
+		Wait(6, Ignore Condition);
+		Event Player.Speed -= 200;
+		Set Move Speed(Event Player, Event Player.Speed);
+		Global.accelerateskills = 0;
+	}
+}

@@ -1,0 +1,25 @@
+rule("[PowerCoreUpgrade] Main")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(122.974, 12.007, -61.465)) <= 2.500;
+		Event Player.Item_Quartz >= 10;
+		Is Button Held(Event Player, Button(Reload)) == True;
+	}
+
+	actions
+	{
+		Event Player.Item_Quartz -= 10;
+		Global.InsertQuartz += 10;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 70);
+		Wait(0.100, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

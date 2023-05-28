@@ -1,0 +1,79 @@
+rule("[Force Enhancement] 7-10 Force Enhance")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.EnchantLevel >= 7;
+		Event Player.EnchantLevel < 10;
+		Distance Between(Event Player, Vector(6.010, 6.213, -97.657)) <= 2.500;
+		disabled Event Player.Points >= 7500 * 2 * Global.DifficultyMultiplier;
+		Is Alive(Event Player) == True;
+		Event Player.Item_Mythril >= 20;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("Force Enhancing ...1 (50%)!"));
+		Wait(1, Abort When False);
+		Event Player.EnchantChance = Random Integer(1, 2);
+		Wait(0.050, Ignore Condition);
+		Event Player.EnchantChance = 0;
+		disabled Event Player.Points -= 7500 * 2 * Global.DifficultyMultiplier;
+		Event Player.Item_Mythril -= 20;
+	}
+}
+
+rule("[Force Enhancement] 7-10 can't upgrade lv")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.EnchantLevel < 7;
+		Distance Between(Event Player, Vector(6.010, 6.213, -97.657)) <= 2.500;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(1, Abort When False);
+		Small Message(Event Player, Custom String("You need to reach Enhancement Level 7 first."));
+	}
+}
+
+rule("[Force Enhancement] 7-10 can't upgrade Points")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Distance Between(Event Player, Vector(6.010, 6.213, -97.657)) <= 2.500;
+		Is Alive(Event Player) == True;
+		Event Player.Item_Mythril < 20;
+	}
+
+	actions
+	{
+		Wait(1, Abort When False);
+		Small Message(Event Player, Custom String("You don't have enough Mythril Ore."));
+	}
+}

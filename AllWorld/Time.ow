@@ -1,0 +1,12 @@
+rule("[All World] Time")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Set Match Time(3600);
+	}
+}

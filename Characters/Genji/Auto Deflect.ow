@@ -1,0 +1,21 @@
+rule("[Genji] Auto Deflect")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Genji;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(Random Integer(5, 8), Ignore Condition);
+		Press Button(Event Player, Button(Ability 2));
+		Loop If Condition Is True;
+	}
+}

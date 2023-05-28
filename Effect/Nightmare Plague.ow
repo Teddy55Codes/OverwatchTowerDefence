@@ -1,0 +1,22 @@
+rule("[Effect] Nightmare Plague")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Level == 21;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Cloud, Color(Red), Vector(77.765, 14.233, -99.417), 200, Visible To Position and Radius);
+		Create Effect(All Players(All Teams), Cloud, Color(Red), Vector(77.765, 14.233, -99.417), 200, Visible To Position and Radius);
+		Create Effect(All Players(All Teams), Cloud, Color(Red), Vector(77.765, 14.233, -99.417), 200, Visible To Position and Radius);
+		Create Effect(All Players(All Teams), Cloud, Color(Red), Vector(77.765, 14.233, -99.417), 200, Visible To Position and Radius);
+		Create Effect(All Players(All Teams), Cloud, Color(Red), Vector(77.765, 14.233, -99.417), 200, Visible To Position and Radius);
+		Create Effect(All Players(All Teams), Cloud, Color(Red), Vector(77.765, 14.233, -99.417), 200, Visible To Position and Radius);
+	}
+}

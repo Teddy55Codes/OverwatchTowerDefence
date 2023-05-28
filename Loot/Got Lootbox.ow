@@ -1,0 +1,19 @@
+rule("[Loot] Got Lootbox")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.LootChance == 5;
+	}
+
+	actions
+	{
+		Event Player.LootBox += 1;
+	}
+}

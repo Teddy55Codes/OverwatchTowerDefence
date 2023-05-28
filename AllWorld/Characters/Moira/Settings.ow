@@ -1,0 +1,19 @@
+rule("[All World] Moira Settings")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Moira;
+	}
+
+	conditions
+	{
+		Is Game In Progress == True;
+	}
+
+	actions
+	{
+		Set Respawn Max Time(Event Player, Random Integer(1, 2));
+	}
+}

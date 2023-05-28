@@ -1,0 +1,14 @@
+rule("[All World] HUD Energy")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Progress Bar In-World Text(All Players(All Teams), Global.EnergyPoints, Custom String("Level : {0}/20     Difficulty : {1}",
+			Global.Level, Global.DifficultyName), Vector(76.665, 17, -99.649), 1, Clip Against Surfaces, Color(Turquoise), Color(
+			Lime Green), Visible To Position Values and Color, Default Visibility);
+	}
+}

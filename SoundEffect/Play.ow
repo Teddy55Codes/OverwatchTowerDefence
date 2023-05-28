@@ -1,0 +1,28 @@
+rule("[SoundEffect]")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.SoundEffect == 1;
+	}
+
+	actions
+	{
+		Wait(59, Abort When False);
+		Play Effect(All Players(All Teams), Winston Jump Pack Landing Sound, Color(White), Vector(76, 15, -100), 130);
+		Wait(1, Ignore Condition);
+		Play Effect(All Players(All Teams), Winston Jump Pack Landing Sound, Color(White), Vector(76, 15, -100), 130);
+		Wait(1, Ignore Condition);
+		Play Effect(All Players(All Teams), Winston Jump Pack Landing Sound, Color(White), Vector(76, 15, -100), 130);
+		Wait(1, Ignore Condition);
+		Play Effect(All Players(All Teams), Doomfist Meteor Strike Impact Sound, Color(White), Vector(76, 15, -100), 130);
+		Play Effect(All Players(All Teams), Sombra EMP Explosion Effect, Color(White), Vector(76.665, 15, -100), 100);
+		Play Effect(All Players(All Teams), DVa Self Destruct Explosion Effect, Color(White), Vector(76.665, 15, -100), 100);
+		Play Effect(All Players(All Teams), Lúcio Sound Barrier Cast Effect, Color(White), Vector(76.665, 15, -100), 100);
+		Global.SoundEffect = 0;
+	}
+}

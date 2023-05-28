@@ -1,0 +1,21 @@
+rule("[Roadhog] Auto Gas")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Roadhog;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(5, Ignore Condition);
+		Press Button(Event Player, Button(Ability 1));
+		Loop If Condition Is True;
+	}
+}

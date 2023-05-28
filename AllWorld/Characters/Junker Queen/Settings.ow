@@ -1,0 +1,19 @@
+rule("[All World] Junker Queen Settings")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Junker Queen;
+	}
+
+	conditions
+	{
+		Is Game In Progress == True;
+	}
+
+	actions
+	{
+		Set Respawn Max Time(Event Player, Random Integer(3, 8));
+	}
+}

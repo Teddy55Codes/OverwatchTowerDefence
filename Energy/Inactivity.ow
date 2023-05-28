@@ -1,0 +1,17 @@
+rule("[Energy] Inactivity")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.EnergyPoints > 0;
+	}
+
+	actions
+	{
+		Chase Global Variable At Rate(EnergyPoints, 0, 1.200, Destination and Rate);
+	}
+}

@@ -1,0 +1,23 @@
+rule("[All World*****************************] Lv.Beyond 21 and above")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.EnergyPoints >= 100;
+		Global.Level >= 20;
+	}
+
+	actions
+	{
+		Wait(4, Ignore Condition);
+		Big Message(All Players(All Teams), String("{0} {1}", Custom String("Nightmare Level : "), Global.Level - 20));
+		Wait(2, Ignore Condition);
+		Big Message(All Players(All Teams), String("{0}!", Custom String("The Breath of Hell released! Can you survive this round?")));
+		Wait(58, Ignore Condition);
+		Global.Plague = True;
+	}
+}

@@ -1,0 +1,24 @@
+rule("[Winston] Auto Rage")
+{
+	event
+	{
+		Player Took Damage;
+		Team 1;
+		Winston;
+	}
+
+	conditions
+	{
+		Event Was Critical Hit == True;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Ultimate Charge(Event Player, 100);
+		Wait(0.100, Ignore Condition);
+		Press Button(Event Player, Button(Ultimate));
+		Wait(5, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

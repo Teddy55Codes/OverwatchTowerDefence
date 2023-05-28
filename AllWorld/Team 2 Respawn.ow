@@ -1,0 +1,21 @@
+rule("[All World] Team 2 Respawn")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Is In Spawn Room(Event Player) == True;
+	}
+
+	actions
+	{
+		Heal(Event Player, Null, 10000 * 10000);
+		Set Status(Event Player, Null, Invincible, 10);
+		Teleport(Event Player, Vector(44.456, 6.990, -71.797));
+	}
+}

@@ -1,0 +1,15 @@
+rule("[All World] HUD Power Core")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Ring, Color(Sky Blue), Vector(39.261, 9.471, -87.568), 8, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), String("{0} {1}", Custom String("[Nuclear Reactor Core] "), String("{0} {1} {2}",
+			Global.Heart, Custom String("/"), Global.PowerCoreLevel)), Vector(39.261, 9.471, -87.568), 2, Clip Against Surfaces,
+			Visible To Position and String, Color(Blue), Default Visibility);
+	}
+}

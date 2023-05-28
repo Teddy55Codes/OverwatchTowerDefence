@@ -1,0 +1,34 @@
+rule("[Fbox] Get Items Ancient Chest")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.FboxOpening == 1;
+		Global.FBoxtryopening >= 100;
+		Global.FBoxChance > 75;
+	}
+
+	actions
+	{
+		Global.FboxOpening = 0;
+		Destroy Effect(Global.FboxSave[0]);
+		Destroy Progress Bar In-World Text(Global.FboxSave[1]);
+		Destroy Effect(Global.FboxSave[2]);
+		Global.FBoxChance = Empty Array;
+		Global.FBoxtryopening = Empty Array;
+		All Players(Team 2).Points += Random Integer(1000 * Global.DifficultyMultiplier * 10, 1000 * Global.DifficultyMultiplier * 30);
+		All Players(Team 2).Item_Diamond += Random Integer(0, 1);
+		All Players(Team 2).LootBox += Random Integer(1, 5);
+		All Players(Team 2).CursedBox += Random Integer(1, 3);
+		All Players(Team 2).Item_Oil += Random Integer(2, 10);
+		All Players(Team 2).TreasureMap += Random Integer(0, 300);
+		Play Effect(All Players(All Teams), Buff Impact Sound, Color(White), Vector(86.219, 14.193, -73.246), 40);
+		Play Effect(All Players(All Teams), Good Pickup Effect, Color(Orange), Vector(86.219, 14.193, -73.246), 6);
+		Big Message(All Players(Team 2), Custom String("The Ancient Chest has been collected"));
+		Destroy Icon(Global.GuideSave[0]);
+	}
+}

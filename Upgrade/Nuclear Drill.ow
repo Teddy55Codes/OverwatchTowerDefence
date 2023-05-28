@@ -1,0 +1,26 @@
+rule("[Upgrade] Nuclear Drill")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(9.136, 6.987, -70.541)) <= 5;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Item_Uranium >= 1;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Item_Uranium -= 1;
+		Event Player.Uranium_to_Nebula += 3;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 20);
+		Wait(1, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

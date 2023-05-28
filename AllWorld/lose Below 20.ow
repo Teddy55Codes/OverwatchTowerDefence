@@ -1,0 +1,26 @@
+rule("[All World] lose Below 20")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Level <= 20;
+		Global.GlobalLife <= 0;
+	}
+
+	actions
+	{
+		Start Camera(All Players(Team 2), Vector(33.724, 15.066, -85.912), Vector(45.821, 9.478, -89.824), 100);
+		Wait(0.500, Ignore Condition);
+		Set Status(All Players(Team 2), Null, Burning, 10);
+		Set Status(All Players(Team 2), Null, Knocked Down, 10);
+		Set Slow Motion(35);
+		Wait(1, Ignore Condition);
+		Set Slow Motion(100);
+		Wait(1, Ignore Condition);
+		Declare Team Victory(Team 1);
+	}
+}

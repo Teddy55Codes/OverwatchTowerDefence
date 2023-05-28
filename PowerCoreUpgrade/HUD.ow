@@ -1,0 +1,16 @@
+rule("[PowerCoreUpgrade] HUD")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create In-World Text(All Players(All Teams), String("{0} {1}", Custom String(
+			"[Nuclear Reactor Core Capacity] -10 Quartz Crystal (Reload) | Progression : "), String("{0} / {1}", Global.InsertQuartz,
+			100)), Vector(122.974, 12.007, -61.465), 1, Clip Against Surfaces, Visible To Position and String, Color(Yellow),
+			Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Red), Vector(122.974, 12.007, -61.465), 2, Visible To Position and Radius);
+	}
+}

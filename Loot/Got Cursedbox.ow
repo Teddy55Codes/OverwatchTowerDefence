@@ -1,0 +1,19 @@
+rule("[Loot] Got Cursedbox")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CurseLootChance == 5;
+	}
+
+	actions
+	{
+		Event Player.CursedBox += 1;
+	}
+}

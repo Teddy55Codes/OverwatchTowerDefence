@@ -1,0 +1,72 @@
+rule("[Junk] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Junkrat;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 500;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+		Global.JunkSkills == 0;
+	}
+
+	actions
+	{
+		Event Player.MagicPts -= 500;
+		Global.JunkSkills = 1;
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 500 Mp to cast \"Treasure Hunter\"", Hero Icon String(Hero(
+			Junkrat)), Event Player));
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Global.JunkSkills = Random Integer(1, 10);
+		Wait(1, Ignore Condition);
+		If(Global.JunkSkills == 1);
+			All Players(Team 2).CursedBox += 1;
+			Small Message(All Players(Team 2), Custom String("+1 The Pandora Chest from Treasure Hunter"));
+		End;
+		If(Global.JunkSkills == 2);
+			All Players(Team 2).Item_Diamond += 1;
+			Small Message(All Players(Team 2), Custom String("+1 Diamond from Treasure Hunter"));
+		End;
+		If(Global.JunkSkills == 3);
+			All Players(Team 2).Item_Mythril += 40;
+			Small Message(All Players(Team 2), Custom String("+40 Mythril Ore from Treasure Hunter"));
+		End;
+		If(Global.JunkSkills == 4);
+			All Players(Team 2).Item_Oil += 10;
+			Small Message(All Players(Team 2), Custom String("+10 Oil Barrels from Treasure Hunter"));
+		End;
+		If(Global.JunkSkills == 5);
+			All Players(Team 2).Item_Quartz += 20;
+			Small Message(All Players(Team 2), Custom String("+20 Quartz Crystals from Treasure Hunter"));
+		End;
+		If(Global.JunkSkills == 6);
+			All Players(Team 2).Item_Void += 1;
+			Small Message(All Players(Team 2), Custom String("+1 Void Steel from Treasure Hunter"));
+		End;
+		If(Global.JunkSkills == 7);
+			All Players(Team 2).Item_Cosmic += 1;
+			Small Message(All Players(Team 2), Custom String("+1 Cosmic Steel from Treasure Hunter"));
+		End;
+		If(Global.JunkSkills == 8);
+			All Players(Team 2).Item_Uranium += 1;
+			Small Message(All Players(Team 2), Custom String("+1 Uranium from Treasure Hunter"));
+		End;
+		If(Global.JunkSkills == 9);
+			All Players(Team 2).LootBox += 3;
+			Small Message(All Players(Team 2), Custom String("+3 The Premium Chest from Treasure Hunter"));
+		End;
+		If(Global.JunkSkills == 10);
+			All Players(Team 2).TreasureMap += 100;
+			Small Message(All Players(Team 2), Custom String("+100 Treasure Maps from Treasure Hunter"));
+		End;
+		Wait(10, Ignore Condition);
+		Global.JunkSkills = 0;
+	}
+}

@@ -1,0 +1,23 @@
+rule("[Tracer] Auto Shoot")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Tracer;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(Random Integer(2, 5), Ignore Condition);
+		Start Holding Button(Event Player, Button(Primary Fire));
+		Wait(Random Integer(0.500, 3), Ignore Condition);
+		Stop Holding Button(Event Player, Button(Primary Fire));
+		Loop If Condition Is True;
+	}
+}

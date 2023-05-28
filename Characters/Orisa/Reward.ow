@@ -1,0 +1,25 @@
+rule("[Orisa]  Reward 1/20 1/240")
+{
+	event
+	{
+		Player Died;
+		Team 1;
+		Orisa;
+	}
+
+	conditions
+	{
+		Y Component Of(Position Of(Event Player)) >= 0;
+		Distance Between(Event Player, Vector(39.261, 9.470, -87.568)) >= 8;
+		Number Of Heroes(Hero(Junker Queen), Team 1) == 0;
+	}
+
+	actions
+	{
+		All Players(Team 2).TreasureMap += Random Integer(2, 3);
+		All Players(Team 2).Points += Global.DifficultyMultiplier * 1400;
+		Global.EnergyPoints += 8;
+		All Players(Team 2).LootChance = Random Integer(1, 20);
+		All Players(Team 2).CurseLootChance = Random Integer(1, 240);
+	}
+}

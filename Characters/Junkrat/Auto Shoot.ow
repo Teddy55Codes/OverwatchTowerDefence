@@ -1,0 +1,21 @@
+rule("[Junkrat] Auto Shoot")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Junkrat;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Press Button(Event Player, Button(Primary Fire));
+		Wait(Random Integer(1, 5), Abort When False);
+		Loop If Condition Is True;
+	}
+}

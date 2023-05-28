@@ -1,0 +1,30 @@
+rule("[All World] Starter Settings (Can test New Subject)")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Is Game In Progress == True;
+	}
+
+	actions
+	{
+		Set Respawn Max Time(All Players(Team 2), 5);
+		Global.WaveSet = 1;
+		Global.NightmareSW = 1;
+		Global.Level = 1;
+		Global.EnergyPoints = 0;
+		All Players(Team 2).EnchantLevel = 0;
+		disabled Big Message(All Players(All Teams), Custom String("By Kurenodesu #1500"));
+		Global.PowerCoreLevel = 50;
+		Global.GlobalLife = 100;
+		All Players(Team 2).MagicPts = 100;
+		All Players(Team 2).DamageReceiveCost = 1;
+		Global.GlobalEventAtk = 1;
+		Global.GlobalEventHealth = 1;
+		Global.Plague = False;
+	}
+}

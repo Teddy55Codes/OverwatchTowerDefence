@@ -1,0 +1,18 @@
+rule("[All World] Win")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Level >= 21;
+		Global.Heart <= 0;
+	}
+
+	actions
+	{
+		Declare Team Victory(Team 2);
+	}
+}

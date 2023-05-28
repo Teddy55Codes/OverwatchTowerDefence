@@ -1,0 +1,29 @@
+rule("[Upgrade] BasicHealingDealtReceivedUpgrade")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(53.352, 19.025, -102.909)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Points >= 800 * Global.DifficultyMultiplier;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Points -= 800 * Global.DifficultyMultiplier;
+		Event Player.HealingDealt += 0.250;
+		Set Healing Dealt(Event Player, Event Player.HealingDealt);
+		Event Player.HealingReceive += 0.500;
+		Set Healing Received(Event Player, Event Player.HealingReceive);
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 20);
+		Wait(0.100, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

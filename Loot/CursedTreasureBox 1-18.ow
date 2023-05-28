@@ -1,0 +1,34 @@
+rule("[Loot] CursedTreasureBox 1-18")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBox > 0;
+		Distance Between(Event Player, Vector(56.444, 6.225, -87.247)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Is Alive(Event Player) == True;
+		Has Status(Event Player, Hacked) == False;
+		Has Status(Event Player, Frozen) == False;
+		Has Status(Event Player, Rooted) == False;
+		Has Status(Event Player, Stunned) == False;
+		Has Status(Event Player, Asleep) == False;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("Analyzing The Pandora Chest! 2.."));
+		Wait(1, Abort When False);
+		Small Message(Event Player, Custom String("Analyzing The Pandora Chest! 1.."));
+		Wait(1, Abort When False);
+		Event Player.CursedBoxReward = Random Integer(1, 18);
+		Event Player.CursedBox -= 1;
+		Wait(1, Abort When False);
+		Loop If Condition Is True;
+	}
+}

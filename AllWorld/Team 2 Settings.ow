@@ -1,0 +1,19 @@
+rule("[All World] Team 2 Settings")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Is Game In Progress == True;
+	}
+
+	actions
+	{
+		Set Respawn Max Time(Event Player, Random Integer(8, 10));
+	}
+}

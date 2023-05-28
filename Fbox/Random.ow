@@ -1,0 +1,18 @@
+rule("[Fbox] Random")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.EnergyPoints >= 100;
+		Global.FboxOpening == 0;
+	}
+
+	actions
+	{
+		Global.FBoxChance = Random Integer(1, 100);
+	}
+}

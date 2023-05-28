@@ -1,0 +1,23 @@
+rule("[Mei] Auto UTL")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Mei;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(Random Integer(4, 10), Abort When False);
+		Set Ultimate Charge(Event Player, 100);
+		Wait(0.100, Ignore Condition);
+		Press Button(Event Player, Button(Ultimate));
+		Loop If Condition Is True;
+	}
+}

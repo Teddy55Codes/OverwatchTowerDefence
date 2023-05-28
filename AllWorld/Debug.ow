@@ -1,0 +1,38 @@
+rule("[All World] Debug ***********************************************************************************************")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Is Button Held(Event Player, Button(Crouch)) == True;
+		Host Player == True;
+		Global.Workshop_Debug == True;
+	}
+
+	actions
+	{
+		Global.EnergyPoints += 102;
+		All Players(Team 2).Points += 10000 * 10 * Global.DifficultyMultiplier;
+		All Players(Team 2).TreasureMap += 500;
+		All Players(Team 2).MagicPts += 500;
+		All Players(Team 2).Item_Geode += 200;
+		All Players(Team 2).CursedBox += 10;
+		All Players(Team 2).LootBox += 10;
+		All Players(Team 2).Item_Diamond += 10;
+		Set Status(All Players(Team 2), Null, Invincible, 9999);
+		All Players(Team 2).Item_Quartz += 10;
+		All Players(Team 2).Item_Mythril += 10;
+		All Players(Team 2).Item_Uranium += 20;
+		All Players(Team 2).Item_Oil += 500;
+		All Players(Team 2).Item_Nebula += 500;
+		All Players(Team 2).Item_Void += 500;
+		All Players(Team 2).Item_Cosmic += 500;
+		All Players(Team 2).MagicRegen += 500;
+	}
+}

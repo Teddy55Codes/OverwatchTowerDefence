@@ -1,0 +1,25 @@
+rule("[Upgrade] RefillLife")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(36.890, 14.021, -105.283)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Points >= Global.DifficultyMultiplier * Global.Level * 1500;
+		Is Alive(Event Player) == True;
+		Global.GlobalLife < 100;
+	}
+
+	actions
+	{
+		Event Player.Points -= Global.DifficultyMultiplier * Global.Level * 1500;
+		Global.GlobalLife = 100;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 20);
+	}
+}

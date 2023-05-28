@@ -1,0 +1,146 @@
+rule("[All World] Prevent 1")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(62.483, 8.025, -107.347)) <= 4;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Frozen, 0.500);
+		Teleport(Event Player, Vector(59.755, 10, -96.690));
+	}
+}
+
+rule("[All World] Prevent 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(65.461, 6.385, -83.030)) <= 4;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Frozen, 0.500);
+		Teleport(Event Player, Vector(59.755, 10, -96.690));
+	}
+}
+
+rule("[All World] Prevent 3")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(85.171, 13.857, -79.456)) <= 5;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Frozen, 0.500);
+		Teleport(Event Player, Vector(59.755, 10, -96.690));
+	}
+}
+
+rule("[All World] Prevent 4")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(77.336, 12.026, -110.314)) <= 4;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Frozen, 0.500);
+		Teleport(Event Player, Random Value In Array(Global.MonsterSpawnRandom));
+	}
+}
+
+rule("[All World] Prevent 5")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(68.725, 10.709, -108.544)) <= 3;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Frozen, 0.500);
+		Teleport(Event Player, Random Value In Array(Global.MonsterSpawnRandom));
+	}
+}
+
+rule("[All World] Prevent 6")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(64.734, 8.647, -107.525)) <= 3;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Frozen, 0.500);
+		Teleport(Event Player, Random Value In Array(Global.MonsterSpawnRandom));
+	}
+}
+
+rule("[All World] BigPrevent 7")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(84.640, 14.032, -80.452)) <= 14;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Frozen, 0.500);
+		Teleport(Event Player, Random Value In Array(Global.MonsterSpawnRandom));
+	}
+}

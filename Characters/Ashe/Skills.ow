@@ -1,0 +1,58 @@
+rule("[Ash] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Ashe;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 400;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+		Event Player.AshSkills == 0;
+	}
+
+	actions
+	{
+		Event Player.MagicPts -= 400;
+		Event Player.AshSkills = 1;
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 400 Mp to cast \"Death Shot\"", Hero Icon String(Hero(Ashe)),
+			Event Player));
+		Set Max Ammo(Event Player, 1, 1);
+		Set Max Ammo(Event Player, 0, 1);
+		Set Ammo(Event Player, 0, 1);
+		Set Status(Event Player, Null, Rooted, 10);
+		Wait(10, Ignore Condition);
+		Set Max Ammo(Event Player, 1, 12);
+		Set Max Ammo(Event Player, 0, 12);
+		Event Player.AshSkills = 0;
+	}
+}
+
+rule("[Ash] Skills 2")
+{
+	event
+	{
+		Player Dealt Damage;
+		Team 2;
+		Ashe;
+	}
+
+	conditions
+	{
+		Event Player.BuffPenalty == 2;
+		Event Player.AshSkills == 1;
+		Victim == Event Was Critical Hit;
+	}
+
+	actions
+	{
+		Kill(Victim, Event Player);
+		Play Effect(All Players(All Teams), DVa Self Destruct Explosion Effect, Color(White), Victim, 5);
+		Play Effect(All Players(All Teams), DVa Self Destruct Explosion Sound, Color(White), Victim, 30);
+	}
+}

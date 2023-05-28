@@ -1,0 +1,50 @@
+rule("[Upgrade] HeartUpgrade")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(55.394, 22.554, -68.688)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Points >= 400 * Global.DifficultyMultiplier * Global.Level;
+		Global.Heart < Global.PowerCoreLevel;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Points -= 400 * Global.DifficultyMultiplier * Global.Level;
+		Global.Heart += Global.DifficultyMultiplier * 2;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 45);
+		Small Message(All Players(All Teams), String("{0} {1}", Event Player, Custom String("Repaired the Point!")));
+		Wait(0.100, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}
+
+rule("[Upgrade] Can't HeartUpgrade")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(55.394, 22.554, -68.688)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Global.Heart >= Global.PowerCoreLevel;
+	}
+
+	actions
+	{
+		Small Message(Event Player, String("{0}!", Custom String("Cannot be repaired, Increase the capacity of the Power Core First")));
+	}
+}

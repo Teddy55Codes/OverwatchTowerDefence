@@ -1,0 +1,29 @@
+rule("[Upgrade] BasicDamageReceiveUpgrade")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(56.592, 19.347, -79.917)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Points >= 2400 * Global.DifficultyMultiplier;
+		Event Player.DamageReceive > 26;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Points -= 2400 * Global.DifficultyMultiplier;
+		Event Player.DamageReceive -= 0.500;
+		Set Damage Received(Event Player, Event Player.DamageReceive);
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 20);
+		Event Player.DamageReceiveCost += 1;
+		Wait(0.500, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

@@ -1,0 +1,26 @@
+rule("[Upgrade] Supercomputer")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(1.384, 7.715, -47.601)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Item_Oil >= 5;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Item_Oil -= 5;
+		Event Player.Magic_to_Point += 500;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 20);
+		Wait(1, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

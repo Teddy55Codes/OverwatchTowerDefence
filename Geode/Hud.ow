@@ -1,0 +1,14 @@
+rule("[Geode] Hud")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create In-World Text(All Players(All Teams), Custom String("[Process] -5 Geode (Hold Reload)"), Vector(-1.364, 7.698, -72.803), 1,
+			Clip Against Surfaces, Visible To Position and String, Color(Turquoise), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Green), Vector(-1.364, 7.698, -72.803), 2, Visible To Position and Radius);
+	}
+}

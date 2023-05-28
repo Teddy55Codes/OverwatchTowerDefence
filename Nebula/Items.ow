@@ -1,0 +1,225 @@
+rule("[Nebula] Prestige 1% 100")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.NebulaRandomItem == 100;
+	}
+
+	actions
+	{
+		disabled Small Message(Event Player, Custom String("+ 1 Void Portal...!"));
+		disabled Event Player.Prestige += 1;
+		disabled Big Message(All Players(All Teams), String("{0} {1} {2}", Hero Icon String(Hero Of(Event Player)), Event Player, Custom String(
+			" Found 1 {0} Uranium while processing geode!", Icon String(Radioactive))));
+		Small Message(Event Player, Custom String("+1 Prestige Star...!"));
+		Event Player.Prestige += 1;
+		Event Player.MagicRegen += 2;
+		Big Message(All Players(All Teams), String("{0} {1} {2}", Hero Icon String(Hero Of(Event Player)), Event Player, String("{0} {1}",
+			Custom String(" has just achieved Prestige Rank : "), Event Player.Prestige)));
+		Event Player.HealingDealt += 50;
+		Set Healing Dealt(Event Player, Event Player.HealingDealt);
+		Event Player.HealingReceive += 50;
+		Set Healing Received(Event Player, Event Player.HealingReceive);
+		Event Player.Damage += 50;
+		Set Damage Dealt(Event Player, Event Player.Damage);
+		Event Player.Health += 50;
+		Set Max Health(Event Player, Event Player.Health);
+		Event Player.Speed += 50;
+		Set Move Speed(Event Player, Event Player.Speed);
+	}
+}
+
+rule("[Nebula] Prestige 2% 98-99")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.NebulaRandomItem >= 98;
+		Event Player.NebulaRandomItem < 100;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("+1 Prestige Star...!"));
+		Event Player.Prestige += 1;
+		Event Player.MagicRegen += 2;
+		Big Message(All Players(All Teams), String("{0} {1} {2}", Hero Icon String(Hero Of(Event Player)), Event Player, String("{0} {1}",
+			Custom String(" has just achieved Prestige Rank : "), Event Player.Prestige)));
+		Event Player.HealingDealt += 50;
+		Set Healing Dealt(Event Player, Event Player.HealingDealt);
+		Event Player.HealingReceive += 50;
+		Set Healing Received(Event Player, Event Player.HealingReceive);
+		Event Player.Damage += 50;
+		Set Damage Dealt(Event Player, Event Player.Damage);
+		Event Player.Health += 50;
+		Set Max Health(Event Player, Event Player.Health);
+		Event Player.Speed += 50;
+		Set Move Speed(Event Player, Event Player.Speed);
+	}
+}
+
+rule("[Nebula] Galaxy Supply Bag 7% 91-97")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.NebulaRandomItem >= 91;
+		Event Player.NebulaRandomItem < 98;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("+1 Galaxy Supply Bag"));
+		Event Player.CursedBox += 1;
+		Event Player.LootBox += 3;
+		Event Player.Item_Diamond += 1;
+		Event Player.Item_Oil += 10;
+		Event Player.Item_Geode += 50;
+		Event Player.TreasureMap += 100;
+		Event Player.Item_Quartz += 50;
+		Event Player.Item_Mythril += 50;
+		Event Player.Item_Void += 2;
+		Event Player.Item_Cosmic += 1;
+	}
+}
+
+rule("[Nebula] Magnetic Field Generator 5% 86-90")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.NebulaRandomItem >= 86;
+		Event Player.NebulaRandomItem < 91;
+	}
+
+	actions
+	{
+		Global.Magic_to_Repair += 1;
+		Wait(0.200, Ignore Condition);
+		Small Message(Event Player, Custom String("+1 Magnetic Field Generator"));
+		Wait(0.500, Ignore Condition);
+	}
+}
+
+rule("[Nebula] Supercomputer 5% 81-85")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.NebulaRandomItem >= 81;
+		Event Player.NebulaRandomItem < 86;
+	}
+
+	actions
+	{
+		Event Player.Magic_to_Point += 500;
+		Wait(0.200, Ignore Condition);
+		Small Message(Event Player, Custom String("+ 1 Supercomputer "));
+		Wait(0.500, Ignore Condition);
+	}
+}
+
+rule("[Nebula] Cosmic Steel 10% 71-80")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.NebulaRandomItem >= 71;
+		Event Player.NebulaRandomItem < 81;
+	}
+
+	actions
+	{
+		Event Player.Item_Cosmic += Random Integer(1, 1);
+		Wait(0.200, Ignore Condition);
+		Small Message(Event Player, Custom String("+1 Cosmic Steel"));
+		Wait(0.500, Ignore Condition);
+	}
+}
+
+rule("[Nebula] Void Steel 10% 61-70")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.NebulaRandomItem >= 61;
+		Event Player.NebulaRandomItem < 71;
+	}
+
+	actions
+	{
+		Event Player.Item_Void += Random Integer(1, 1);
+		Wait(0.200, Ignore Condition);
+		Small Message(Event Player, Custom String("+1 Void Steel"));
+		Wait(0.500, Ignore Condition);
+	}
+}
+
+rule("[Nebula] Points 60% 1-60")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.NebulaRandomItem >= 1;
+		Event Player.NebulaRandomItem < 61;
+	}
+
+	actions
+	{
+		Event Player.Pointloot += Random Integer(1, 5000);
+		Wait(0.200, Ignore Condition);
+		Small Message(Event Player, String("{0} {1} {2}", Custom String("+ "), Event Player.Pointloot, Custom String(" Pts..!")));
+		Event Player.Points += Event Player.Pointloot;
+		Wait(0.500, Ignore Condition);
+		Event Player.Pointloot = 0;
+	}
+}

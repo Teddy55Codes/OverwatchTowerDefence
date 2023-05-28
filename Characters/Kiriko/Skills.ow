@@ -1,0 +1,52 @@
+rule("[Kiriko] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Kiriko;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 250;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+		Event Player.KirikoSkills == 0;
+	}
+
+	actions
+	{
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 250 Mp to cast \"Poison Kunai\"", Hero Icon String(Hero(
+			Kiriko)), Event Player));
+		Event Player.MagicPts -= 250;
+		Event Player.KirikoSkills = 1;
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Wait(10, Ignore Condition);
+		Event Player.KirikoSkills = 0;
+	}
+}
+
+rule("[Kiriko] Skills 2")
+{
+	event
+	{
+		Player Dealt Damage;
+		Team 2;
+		Kiriko;
+	}
+
+	conditions
+	{
+		Event Player.BuffPenalty == 2;
+		Event Player.KirikoSkills == 1;
+		Victim == Event Was Critical Hit;
+	}
+
+	actions
+	{
+		Start Damage Over Time(Victim, Event Player, 2, Event Player.Damage);
+	}
+}

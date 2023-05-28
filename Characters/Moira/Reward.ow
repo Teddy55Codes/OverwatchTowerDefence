@@ -1,0 +1,25 @@
+rule("[Moira]  Reward 1/100 1/800")
+{
+	event
+	{
+		Player Died;
+		Team 1;
+		Moira;
+	}
+
+	conditions
+	{
+		Y Component Of(Position Of(Event Player)) >= 0;
+		Distance Between(Event Player, Vector(39.261, 9.470, -87.568)) >= 8;
+		Number Of Heroes(Hero(Junker Queen), Team 1) == 0;
+	}
+
+	actions
+	{
+		All Players(Team 2).TreasureMap += Random Integer(1, 1);
+		All Players(Team 2).Points += Global.DifficultyMultiplier * 300;
+		Global.EnergyPoints += 2;
+		All Players(Team 2).LootChance = Random Integer(1, 100);
+		All Players(Team 2).CurseLootChance = Random Integer(1, 800);
+	}
+}

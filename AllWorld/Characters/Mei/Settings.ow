@@ -1,0 +1,19 @@
+rule("[All World] Mei Settings")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Mei;
+	}
+
+	conditions
+	{
+		Is Game In Progress == True;
+	}
+
+	actions
+	{
+		Set Respawn Max Time(Event Player, Random Integer(1, 4));
+	}
+}

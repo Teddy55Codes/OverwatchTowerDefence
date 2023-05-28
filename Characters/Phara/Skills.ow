@@ -1,0 +1,34 @@
+rule("[Pha] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Pharah;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 150;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 150 Mp to cast \"Rocket Mastery\"", Hero Icon String(Hero(
+			Pharah)), Event Player));
+		Event Player.MagicPts -= 150;
+		Set Projectile Speed(Event Player, 500);
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Set Status(Event Player, Null, Invincible, 2.500);
+		Event Player.Damage += 1000;
+		Set Damage Dealt(Event Player, Event Player.Damage);
+		Wait(2.500, Ignore Condition);
+		Set Projectile Speed(Event Player, 100);
+		Event Player.Damage -= 1000;
+		Set Damage Dealt(Event Player, Event Player.Damage);
+	}
+}

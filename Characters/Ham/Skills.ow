@@ -1,0 +1,89 @@
+rule("[Ball] Skills Working")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Wrecking Ball;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 50;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+		Is In Alternate Form(Event Player) == True;
+	}
+
+	actions
+	{
+		Chase Player Variable At Rate(Event Player, MagicPts, 0, 10, Destination and Rate);
+		Event Player.WreakingSkills = 1;
+	}
+}
+
+rule("[Ball] Skills Exit Form")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Wrecking Ball;
+	}
+
+	conditions
+	{
+		Event Player.BuffPenalty == 2;
+		Is In Alternate Form(Event Player) == False;
+	}
+
+	actions
+	{
+		Stop Chasing Player Variable(Event Player, MagicPts);
+		Event Player.WreakingSkills = 0;
+	}
+}
+
+rule("[Ball] Skills no MP")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Wrecking Ball;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts == 0;
+	}
+
+	actions
+	{
+		Event Player.WreakingSkills = 0;
+	}
+}
+
+rule("[Ball] Skills Buffing")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Wrecking Ball;
+	}
+
+	conditions
+	{
+		Event Player.WreakingSkills == 1;
+	}
+
+	actions
+	{
+		Set Ability Cooldown(Event Player, Button(Ability 1), 0);
+		Set Ability Cooldown(Event Player, Button(Ability 2), 0);
+		Set Ability Cooldown(Event Player, Button(Secondary Fire), 0);
+		Wait(0.250, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

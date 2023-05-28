@@ -1,0 +1,21 @@
+rule("[Orisa] Auto Barrier")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Orisa;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(Random Integer(2, 8), Ignore Condition);
+		Press Button(Event Player, Button(Ability 2));
+		Loop If Condition Is True;
+	}
+}

@@ -1,0 +1,23 @@
+rule("[Torb] Auto UTL 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Torbjörn;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Is Using Ultimate(Event Player) == True;
+	}
+
+	actions
+	{
+		Start Holding Button(Event Player, Button(Primary Fire));
+		Wait(2, Ignore Condition);
+		Stop Holding Button(Event Player, Button(Primary Fire));
+		Loop If Condition Is True;
+	}
+}

@@ -1,0 +1,16 @@
+rule("[DiamondSellPrice] Main")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Global.DiamondSellPrice = Random Real(10000 * 1 * Global.DifficultyMultiplier, 10000 * 7 * Global.DifficultyMultiplier);
+		Wait(240, Ignore Condition);
+		Big Message(All Players(All Teams), String("{0} {1} {2}", Custom String("The diamond price has been changed! "),
+			Global.DiamondSellPrice, Custom String(" Points!")));
+		Loop;
+	}
+}

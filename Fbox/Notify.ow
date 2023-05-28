@@ -1,0 +1,23 @@
+rule("[Fbox] Notify")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(86.231, 13.822, -73.164)) <= 6.500;
+		Is Alive(Event Player) == True;
+		Global.FboxOpening == 1;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("Press Reload repeatedly to open it."));
+		Wait(5, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

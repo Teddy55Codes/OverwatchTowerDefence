@@ -1,0 +1,23 @@
+rule("[D.va] Auto Matrix")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		D.Va;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Start Holding Button(Event Player, Button(Secondary Fire));
+		Wait(0.700, Abort When False);
+		Stop Holding Button(Event Player, Button(Secondary Fire));
+		Wait(Random Integer(4, 7), Abort When False);
+		Loop If Condition Is True;
+	}
+}

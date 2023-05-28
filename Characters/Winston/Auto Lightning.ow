@@ -1,0 +1,23 @@
+rule("[Winston] Auto Lightning")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Winston;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Start Holding Button(Event Player, Button(Primary Fire));
+		Wait(3, Abort When False);
+		Stop Holding Button(Event Player, Button(Primary Fire));
+		Wait(2, Abort When False);
+		Loop If Condition Is True;
+	}
+}

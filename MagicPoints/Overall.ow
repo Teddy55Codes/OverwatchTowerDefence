@@ -1,0 +1,22 @@
+rule("[Magic Points] Overall")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts < 500;
+	}
+
+	actions
+	{
+		Wait(5, Abort When False);
+		"Default = 5"
+		Event Player.MagicPts += Event Player.MagicRegen + 5;
+		Loop If Condition Is True;
+	}
+}

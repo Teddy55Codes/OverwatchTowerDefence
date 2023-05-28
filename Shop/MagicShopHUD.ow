@@ -1,0 +1,19 @@
+rule("[Shop] MagicShopHUD")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Ring, Color(Violet), Vector(1.384, 7.175, -47.601), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String(
+			"[Press Reload to Upgrade] Supercomputer (+500 pts/30 sec) -{0} Oil barrels", 5), Vector(1.384, 7.175, -47.601), 1,
+			Clip Against Surfaces, Visible To Position and String, Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Violet), Vector(25.736, 12.173, -72.414), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String(
+			"[Press Reload to Upgrade] Magnetic Field Generator (+1 base hp/120 sec) -{0} Cosmic Steel", 1), Vector(25.736, 12.173,
+			-72.414), 1, Clip Against Surfaces, Visible To Position and String, Color(Lime Green), Default Visibility);
+	}
+}

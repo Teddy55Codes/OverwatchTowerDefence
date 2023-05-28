@@ -1,0 +1,12 @@
+rule("[Workshop] Dev Only")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Global.Workshop_Debug = Workshop Setting Toggle(Custom String("Dev Only"), Custom String("Debug Mode"), False, 2);
+	}
+}

@@ -1,0 +1,21 @@
+rule("[Lucio] Auto Jump")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Lúcio;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(Random Integer(1, 5), Ignore Condition);
+		Press Button(Event Player, Button(Jump));
+		Loop If Condition Is True;
+	}
+}

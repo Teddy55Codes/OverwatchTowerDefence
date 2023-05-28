@@ -1,0 +1,100 @@
+rule("[Bas] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Bastion;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 300;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+		Global.BastionSkills == 0;
+	}
+
+	actions
+	{
+		Global.BastionSkills = 1;
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 300 Mp to cast \"War Factory\"", Hero Icon String(Hero(
+			Bastion)), Event Player));
+		Event Player.MagicPts -= 300;
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Wait(2, Ignore Condition);
+		Damage(All Players(Team 1), Event Player, Event Player.Damage);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Effect, Color(White), Random Value In Array(
+			Global.MonsterSpawnRandom), 100);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Effect, Color(White), Random Value In Array(
+			Global.MonsterSpawnRandom), 100);
+		Damage(All Players(Team 1), Event Player, Event Player.Damage);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Effect, Color(White), Random Value In Array(
+			Global.MonsterSpawnRandom), 100);
+		Damage(All Players(Team 1), Event Player, Event Player.Damage);
+		Wait(2, Ignore Condition);
+		Damage(All Players(Team 1), Event Player, Event Player.Damage);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Effect, Color(White), Random Value In Array(
+			Global.MonsterSpawnRandom), 100);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Effect, Color(White), Random Value In Array(
+			Global.MonsterSpawnRandom), 100);
+		Damage(All Players(Team 1), Event Player, Event Player.Damage);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Effect, Color(White), Random Value In Array(
+			Global.MonsterSpawnRandom), 100);
+		Damage(All Players(Team 1), Event Player, Event Player.Damage);
+		Wait(2, Ignore Condition);
+		Damage(All Players(Team 1), Event Player, Event Player.Damage);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Effect, Color(White), Random Value In Array(
+			Global.MonsterSpawnRandom), 100);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Effect, Color(White), Random Value In Array(
+			Global.MonsterSpawnRandom), 100);
+		Damage(All Players(Team 1), Event Player, Event Player.Damage);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Effect, Color(White), Random Value In Array(
+			Global.MonsterSpawnRandom), 100);
+		Damage(All Players(Team 1), Event Player, Event Player.Damage);
+		Global.BastionSkills = 0;
+	}
+}
+
+rule("[Bas] Skills Sound Effect")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.BastionSkills == 1;
+	}
+
+	actions
+	{
+		Wait(2, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Sound, Color(White), All Players(All Teams), 150);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Sound, Color(White), All Players(All Teams), 100);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Sound, Color(White), All Players(All Teams), 100);
+		Wait(2, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Sound, Color(White), All Players(All Teams), 100);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Sound, Color(White), All Players(All Teams), 100);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Sound, Color(White), All Players(All Teams), 100);
+		Wait(2, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Sound, Color(White), All Players(All Teams), 100);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Sound, Color(White), All Players(All Teams), 100);
+		Wait(0.250, Ignore Condition);
+		Play Effect(All Players(All Teams), Bastion Tank Cannon Explosion Sound, Color(White), All Players(All Teams), 100);
+	}
+}

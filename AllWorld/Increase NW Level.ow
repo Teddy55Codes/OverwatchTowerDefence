@@ -1,0 +1,19 @@
+rule("[All World] Increase NW Level ------------------------------------------------------------------------------------")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Level >= 20;
+		Global.EnergyPoints >= 100;
+	}
+
+	actions
+	{
+		"Default = 5"
+		Global.NightmareSW += 1;
+	}
+}

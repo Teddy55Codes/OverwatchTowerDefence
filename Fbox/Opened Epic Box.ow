@@ -1,0 +1,23 @@
+rule("[Fbox] Opened Epic Box 4 3 pts")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(86.231, 13.822, -73.164)) <= 6.500;
+		Global.FboxOpening == 1;
+		Global.FBoxChance > 75;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Global.FBoxtryopening += 3;
+	}
+}

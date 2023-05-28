@@ -1,0 +1,19 @@
+rule("[All World] Roadhog Settings")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Roadhog;
+	}
+
+	conditions
+	{
+		Is Game In Progress == True;
+	}
+
+	actions
+	{
+		Set Respawn Max Time(Event Player, Random Integer(3, 10));
+	}
+}

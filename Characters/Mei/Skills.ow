@@ -1,0 +1,25 @@
+rule("[Mei] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Mei;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 100;
+		Is Using Ability 1(Event Player) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.MagicPts -= 100;
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 100 Mp to cast \"Absolute Zero\"", Hero Icon String(Hero(Mei)),
+			Event Player));
+		Set Status(Players Within Radius(Event Player, 10, Team 1, Off), Event Player, Frozen, 10);
+	}
+}

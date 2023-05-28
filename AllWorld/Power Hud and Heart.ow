@@ -1,0 +1,16 @@
+rule("[All World] Power Hud and Heart")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create In-World Text(All Players(All Teams), String("{0} {1}", Custom String(
+			"Press Reload (R) to Upgrade or Buy Something. Hold Jump Button to learn more about items #KurenoDesu ;w; DifficultyLv : "),
+			Global.NightmareSW), Vector(48.671, 9, -72.659), 1, Clip Against Surfaces, Visible To Position and String, Color(Aqua),
+			Default Visibility);
+		Global.Heart = 50;
+	}
+}

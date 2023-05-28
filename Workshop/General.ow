@@ -1,0 +1,15 @@
+rule("[Workshop] General")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Global.Workshop_Difficulty = Workshop Setting Combo(Custom String("General"), Custom String("Difficulty"), 1, Array(Custom String(
+			"Normal"), Custom String("Hard"), Custom String("Suicidal"), Custom String("Hell on Earth"), Custom String(
+			"Infernal Nightmare")), 0);
+		Global.Workshop_Fbox = Workshop Setting Integer(Custom String("General"), Custom String("GoldenBox Difficulty"), 8, 1, 32, 1);
+	}
+}

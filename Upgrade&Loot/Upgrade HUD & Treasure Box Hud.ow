@@ -1,0 +1,48 @@
+rule("[Upgrade/Loot] Upgrade HUD & Treasure Box Hud")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Ring, Color(Red), Vector(54.827, 13.307, -80.989), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Press Reload to Upgrade] Damage +2.00% -{0} Points",
+			3200 * Global.DifficultyMultiplier), Vector(54.827, 13.306, -80.989), 1, Clip Against Surfaces, Visible To Position and String,
+			Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Green), Vector(56.802, 13.271, -74.084), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Press Reload to Upgrade] Health +2% -{0} Points",
+			600 * Global.DifficultyMultiplier), Vector(56.802, 13.270, -74.084), 1, Clip Against Surfaces, Visible To Position and String,
+			Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Turquoise), Vector(56.592, 19.347, -79.917), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Press Reload to Upgrade] Damage Received -{0} Points",
+			2400 * Global.DifficultyMultiplier), Vector(56.592, 19.347, -79.917), 1, Clip Against Surfaces, Visible To Position and String,
+			Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Sky Blue), Vector(66.035, 19.344, -73.005), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Press Reload to Upgrade] Speed +0.75% -{0} Points",
+			750 * Global.DifficultyMultiplier), Vector(66.035, 19.344, -73.005), 1, Clip Against Surfaces, Visible To Position and String,
+			Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Orange), Vector(53.352, 19.025, -102.909), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Press Reload to Upgrade] Healing Dealt & Received  -{0} Points",
+			1000 * Global.DifficultyMultiplier), Vector(53.352, 19.025, -102.909), 1, Clip Against Surfaces,
+			Visible To Position and String, Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Yellow), Vector(36.890, 14.021, -105.283), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Press Reload to hire] Worker (Restore Lives) -{0} Points",
+			1500 * Global.Level * Global.DifficultyMultiplier), Vector(36.890, 14.021, -105.283), 1, Clip Against Surfaces,
+			Visible To Position and String, Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Purple), Vector(55.394, 22.554, -68.688), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Press Reload to Repair] +{0} Nuclear Reactor Core -{1} Points",
+			Global.DifficultyMultiplier * 2, 400 * Global.Level * Global.DifficultyMultiplier), Vector(55.394, 22.554, -68.688), 1,
+			Clip Against Surfaces, Visible To Position and String, Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Purple), Vector(59.776, 6.175, -95.982), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[The Premium Chest] Points! (Hold Reload)"), Vector(59.776, 6.175,
+			-95.982), 1, Clip Against Surfaces, Visible To Position and String, Color(Turquoise), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Purple), Vector(56.444, 6.225, -87.247), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[The Pandora Chest] No one knows What's inside (Hold Reload)"), Vector(
+			56.444, 6.225, -87.247), 1, Clip Against Surfaces, Visible To Position and String, Color(Turquoise), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Purple), Vector(9.136, 6.987, -70.541), 5, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Nuclear Drill] -1 Uranium (+3 Nebula Ore/60secs) (Hold Reload)"),
+			Vector(9.136, 6.987, -70.541), 1, Clip Against Surfaces, Visible To Position and String, Color(Turquoise), Default Visibility);
+	}
+}

@@ -1,0 +1,27 @@
+rule("[Upgrade] BasicSpeedUpgrade")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(66.035, 19.344, -73.005)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Points >= 750 * Global.DifficultyMultiplier;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Points -= 750 * Global.DifficultyMultiplier;
+		Event Player.Speed += 0.750;
+		Set Move Speed(Event Player, Event Player.Speed);
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 20);
+		Wait(0.100, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

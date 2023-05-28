@@ -1,0 +1,20 @@
+rule("[All World] Reposition")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Global.MonsterSpawnRandom = Empty Array;
+		Modify Global Variable(MonsterSpawnRandom, Append To Array, Vector(71.305, 14.047, -104.584));
+		Modify Global Variable(MonsterSpawnRandom, Append To Array, Vector(76.944, 14.166, -103.278));
+		Modify Global Variable(MonsterSpawnRandom, Append To Array, Vector(80.213, 14.084, -101.059));
+		Modify Global Variable(MonsterSpawnRandom, Append To Array, Vector(81.024, 14.047, -98.273));
+		Modify Global Variable(MonsterSpawnRandom, Append To Array, Vector(81.489, 14.032, -95.587));
+		Modify Global Variable(MonsterSpawnRandom, Append To Array, Vector(72.116, 14.046, -97.168));
+		Modify Global Variable(MonsterSpawnRandom, Append To Array, Vector(69.029, 13.963, -100.525));
+		Modify Global Variable(MonsterSpawnRandom, Append To Array, Vector(68.731, 13.953, -94.439));
+	}
+}

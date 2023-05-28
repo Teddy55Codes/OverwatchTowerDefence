@@ -1,0 +1,21 @@
+rule("[Ham] Auto Stealt")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Wrecking Ball;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Press Button(Event Player, Button(Ability 1));
+		Wait(2, Abort When False);
+		Loop If Condition Is True;
+	}
+}

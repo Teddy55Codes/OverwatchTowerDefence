@@ -1,0 +1,31 @@
+rule("[Energy]  Lv Up")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.EnergyPoints >= 100;
+	}
+
+	actions
+	{
+		Global.Plague = False;
+		Destroy All Dummy Bots;
+		Destroy HUD Text(Global.LevelSave[0]);
+		Destroy HUD Text(Global.LevelSave[1]);
+		Set Slow Motion(20);
+		Wait(0.500, Ignore Condition);
+		Set Slow Motion(100);
+		Global.WaveSet = 50;
+		Global.EnergyPoints = 0;
+		Global.Level += 1;
+		Global.GlobalLife = 9999;
+		All Players(Team 2).Points += Global.Level * 1000 * Global.DifficultyMultiplier;
+		Global.PowerCoreLevel += Global.DifficultyMultiplier * 2;
+		Wait(1, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

@@ -1,0 +1,27 @@
+rule("[Fbox] Ancient Chest Spawn")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.FBoxChance > 75;
+	}
+
+	actions
+	{
+		Global.FboxOpening = 1;
+		Create Effect(All Players(All Teams), Light Shaft, Color(Orange), Vector(86.231, 0, -73.164), 6, Visible To Position and Radius);
+		Global.FboxSave[0] = Last Created Entity;
+		Create Progress Bar In-World Text(All Players(All Teams), Global.FBoxtryopening, Custom String(
+			"[The Ancient Chest] Press Reload repeatedly to open !"), Vector(86.231, 13.821, -73.164), 1, Clip Against Surfaces, Color(
+			Orange), Color(Green), Visible To Position Values and Color, Default Visibility);
+		Global.FboxSave[1] = Last Text ID;
+		Create Effect(All Players(All Teams), Sparkles, Color(Orange), Vector(86.231, 13, -73.164), 6, Visible To Position and Radius);
+		Global.FboxSave[2] = Last Created Entity;
+		Create Icon(All Players(Team 2), Vector(86.231, 13.821, -73.164), Question Mark, Visible To and Position, Color(Orange), True);
+		Global.GuideSave[0] = Last Created Entity;
+	}
+}

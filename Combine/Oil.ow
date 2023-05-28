@@ -1,0 +1,23 @@
+rule("[Combine] Oil")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(93.966, 12.074, -35.155)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.TreasureMap >= 30;
+	}
+
+	actions
+	{
+		Event Player.TreasureMap -= 30;
+		Event Player.Item_Oil += 1;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 75);
+	}
+}

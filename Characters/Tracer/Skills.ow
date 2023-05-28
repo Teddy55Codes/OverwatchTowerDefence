@@ -1,0 +1,27 @@
+rule("[Tracer] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Tracer;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 75;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 75 Mp to cast \"Time Manipulation\"", Hero Icon String(Hero(
+			Tracer)), Event Player));
+		Event Player.MagicPts -= 75;
+		Set Ultimate Charge(All Players(Team 2), 100);
+	}
+}

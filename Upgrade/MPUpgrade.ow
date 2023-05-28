@@ -1,0 +1,26 @@
+rule("[Upgrade] MPUpgrade")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(134.961, 15.913, -36.195)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Item_Void >= 1;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Item_Void -= 1;
+		Event Player.MagicRegen += 1;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 20);
+		Wait(0.100, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

@@ -1,0 +1,22 @@
+rule("[Nebula Drill]")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.Uranium_to_Nebula > 0;
+	}
+
+	actions
+	{
+		Event Player.Item_Nebula += Event Player.Uranium_to_Nebula;
+		Small Message(Event Player, Custom String("Earned +{0} Nebula Ore from the Nuclear Drill", Event Player.Uranium_to_Nebula));
+		Wait(60, Ignore Condition);
+		Loop;
+	}
+}

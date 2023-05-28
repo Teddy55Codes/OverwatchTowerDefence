@@ -1,0 +1,28 @@
+rule("[Nebula] Main")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(-9.884, 1.432, -20.801)) <= 2.500;
+		Event Player.Item_Nebula >= 5;
+		Is Button Held(Event Player, Button(Reload)) == True;
+	}
+
+	actions
+	{
+		Wait(1, Abort When False);
+		Event Player.Item_Nebula -= 5;
+		Event Player.NebulaRandomItem = Random Integer(1, 100);
+		Wait(0.050, Ignore Condition);
+		Event Player.NebulaRandomItem = 0;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 30);
+		Loop If Condition Is True;
+		Small Message(Event Player, Custom String("Searching...!"));
+	}
+}

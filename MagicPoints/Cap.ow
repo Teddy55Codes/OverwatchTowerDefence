@@ -1,0 +1,21 @@
+rule("[Magic Points] Cap")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts > 500;
+	}
+
+	actions
+	{
+		Event Player.MagicPts = 500;
+		Wait(1, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

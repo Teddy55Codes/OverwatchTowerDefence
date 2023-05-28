@@ -1,0 +1,25 @@
+rule("[Combine] The Pandora Chest Map")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(118.238, 10.070, -48.792)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.TreasureMap >= 100;
+	}
+
+	actions
+	{
+		Event Player.TreasureMap -= 100;
+		Event Player.CursedBox += 1;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 75);
+		Big Message(Event Player, String("{0} {1} {2}", Custom String("[ ! ] "), Event Player, Custom String(
+			" Obtains 1 The Pandora Chest from combining treasure maps!")));
+	}
+}

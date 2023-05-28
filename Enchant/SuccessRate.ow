@@ -1,0 +1,127 @@
+rule("[Enchant] 1-2 100%")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.EnchantLevel <= 2;
+		Distance Between(Event Player, Vector(96.735, 17.116, -22.764)) <= 2.500;
+		disabled Event Player.Points >= 1500 * Global.DifficultyMultiplier;
+		Is Alive(Event Player) == True;
+		Event Player.Item_Mythril >= 2;
+	}
+
+	actions
+	{
+		Wait(0.500, Abort When False);
+		Event Player.EnchantChance = Random Integer(1, 1);
+		Wait(0.050, Ignore Condition);
+		Event Player.EnchantChance = 0;
+		disabled Event Player.Points -= 1500 * Global.DifficultyMultiplier;
+		Event Player.Item_Mythril -= 2;
+		Loop If Condition Is True;
+	}
+}
+
+rule("[Enchant] 3-4 50%")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.EnchantLevel >= 3;
+		Event Player.EnchantLevel <= 4;
+		Distance Between(Event Player, Vector(96.735, 17.116, -22.764)) <= 2.500;
+		disabled Event Player.Points >= 1500 * Global.DifficultyMultiplier;
+		Is Alive(Event Player) == True;
+		Event Player.Item_Mythril >= 2;
+	}
+
+	actions
+	{
+		Wait(0.500, Abort When False);
+		Event Player.EnchantChance = Random Integer(1, 2);
+		Wait(0.050, Ignore Condition);
+		Event Player.EnchantChance = 0;
+		Event Player.Item_Mythril -= 2;
+		disabled Event Player.Points -= 1500 * Global.DifficultyMultiplier;
+		Loop If Condition Is True;
+	}
+}
+
+rule("[Enchant] 5-6 33%")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.EnchantLevel >= 5;
+		Event Player.EnchantLevel <= 6;
+		disabled Event Player.Points >= 1500 * Global.DifficultyMultiplier;
+		Distance Between(Event Player, Vector(96.735, 17.116, -22.764)) <= 2.500;
+		Is Alive(Event Player) == True;
+		Event Player.Item_Mythril >= 2;
+	}
+
+	actions
+	{
+		Wait(1, Abort When False);
+		Event Player.EnchantChance = Random Integer(1, 3);
+		Wait(0.050, Ignore Condition);
+		Event Player.EnchantChance = 0;
+		Event Player.Item_Mythril -= 2;
+		disabled Event Player.Points -= 1500 * Global.DifficultyMultiplier;
+		Loop If Condition Is True;
+	}
+}
+
+rule("[Enchant] 7-10 25%")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.EnchantLevel >= 7;
+		Event Player.EnchantLevel <= 9;
+		Distance Between(Event Player, Vector(96.735, 17.116, -22.764)) <= 2.500;
+		disabled Event Player.Points >= 1500 * Global.DifficultyMultiplier;
+		Is Alive(Event Player) == True;
+		Event Player.Item_Mythril >= 2;
+	}
+
+	actions
+	{
+		Wait(1, Abort When False);
+		Event Player.EnchantChance = Random Integer(1, 4);
+		Wait(0.050, Ignore Condition);
+		Event Player.EnchantChance = 0;
+		disabled Event Player.Points -= 1500 * Global.DifficultyMultiplier;
+		Event Player.Item_Mythril -= 2;
+		Wait(1, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

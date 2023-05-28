@@ -1,0 +1,99 @@
+rule("[World] Normal 0")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Workshop_Difficulty == 0;
+	}
+
+	actions
+	{
+		Global.DifficultyMultiplier = 1;
+		Global.DifficultyName = String("{0} {1} {2}", Custom String("Normal "), Custom String("     Points Multiplier x"),
+			Global.DifficultyMultiplier);
+	}
+}
+
+rule("[World] Hard 1")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Workshop_Difficulty == 1;
+	}
+
+	actions
+	{
+		Global.DifficultyMultiplier = 2;
+		Global.DifficultyName = String("{0} {1} {2}", Custom String("Hard "), Custom String("     Points Multiplier x"),
+			Global.DifficultyMultiplier);
+	}
+}
+
+rule("[World] Suicidal 2")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Workshop_Difficulty == 2;
+	}
+
+	actions
+	{
+		Global.DifficultyMultiplier = 3;
+		Global.DifficultyName = String("{0} {1} {2}", Custom String("Suicidal "), Custom String("     Points Multiplier x"),
+			Global.DifficultyMultiplier);
+	}
+}
+
+rule("[World] Hell on Earth 3")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Workshop_Difficulty == 3;
+	}
+
+	actions
+	{
+		Global.DifficultyMultiplier = 4;
+		Global.DifficultyName = String("{0} {1} {2}", Custom String("Hell on Earth "), Custom String("     Points Multiplier x"),
+			Global.DifficultyMultiplier);
+	}
+}
+
+rule("[World] Infernal Nightmare 4")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Workshop_Difficulty == 4;
+	}
+
+	actions
+	{
+		Global.DifficultyMultiplier = 5;
+		Global.DifficultyName = String("{0} {1} {2}", Custom String("Infernal Nightmare "), Custom String("     Points Multiplier x"),
+			Global.DifficultyMultiplier);
+	}
+}

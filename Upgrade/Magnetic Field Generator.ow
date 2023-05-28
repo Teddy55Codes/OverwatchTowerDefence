@@ -1,0 +1,26 @@
+rule("[Upgrade] Magnetic Field Generator")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(25.736, 12.173, -72.414)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Item_Cosmic >= 1;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Item_Cosmic -= 1;
+		Global.Magic_to_Repair += 1;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 20);
+		Wait(1, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

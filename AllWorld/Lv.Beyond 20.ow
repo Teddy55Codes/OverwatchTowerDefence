@@ -1,0 +1,26 @@
+rule("[All World***] Lv.Beyond 20")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.EnergyPoints >= 100;
+		Global.Level == 19;
+	}
+
+	actions
+	{
+		Global.SoundEffect = 1;
+		Wait(2, Ignore Condition);
+		All Players(Team 1).Damage = Empty Array;
+		All Players(Team 1).Health = Empty Array;
+		All Players(Team 1).Speed = Empty Array;
+		Heal(All Players(Team 2), Null, 500);
+		Global.WaveSet = Random Integer(19, 19);
+		Wait(1.100, Ignore Condition);
+		All Players(Team 1).Damage = Empty Array;
+	}
+}

@@ -1,0 +1,32 @@
+rule("[Rein] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Reinhardt;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 100;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 100 Mp to cast \"Earthquake\"", Hero Icon String(Hero(
+			Reinhardt)), Event Player));
+		Event Player.MagicPts -= 100;
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Wait(0.750, Ignore Condition);
+		Set Slow Motion(30);
+		Set Status(All Living Players(Team 1), Null, Knocked Down, 4);
+		Teleport(All Living Players(Team 1), Vector(76.120, 16, -99.483));
+		Wait(0.700, Ignore Condition);
+		Set Slow Motion(100);
+	}
+}

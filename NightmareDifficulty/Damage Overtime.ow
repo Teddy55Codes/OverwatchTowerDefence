@@ -1,0 +1,20 @@
+rule("[Nightmare Difficulty] Damage Overtime")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Plague >= True;
+		Global.Level >= 21;
+	}
+
+	actions
+	{
+		Damage(All Players(Team 2), Null, Global.NightmareSW * 50);
+		Wait(2, Abort When False);
+		Loop If Condition Is True;
+	}
+}

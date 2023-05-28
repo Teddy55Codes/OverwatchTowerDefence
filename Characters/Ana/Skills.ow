@@ -1,0 +1,26 @@
+rule("[Ana] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Ana;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 100;
+		Is Using Ability 2(Event Player) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 100 Mp to cast \"Acidic Field\"", Hero Icon String(Hero(Ana)),
+			Event Player));
+		Event Player.MagicPts -= 100;
+		Wait(0.500, Ignore Condition);
+		Damage(All Players(Team 1), Event Player, Event Player.HealingDealt);
+	}
+}

@@ -1,0 +1,22 @@
+rule("[Lucio] Auto Boop")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Lúcio;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Distance Between(Event Player, Closest Player To(Eye Position(Event Player), Team 2)) <= 8;
+	}
+
+	actions
+	{
+		Wait(1.500, Abort When False);
+		Press Button(Event Player, Button(Secondary Fire));
+		Loop If Condition Is True;
+	}
+}

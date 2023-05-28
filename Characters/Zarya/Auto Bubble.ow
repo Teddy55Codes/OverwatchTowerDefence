@@ -1,0 +1,21 @@
+rule("[Zarya] Auto Bubble")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Zarya;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(Random Integer(7, 15), Abort When False);
+		Press Button(Event Player, Button(Ability 1));
+		Loop If Condition Is True;
+	}
+}

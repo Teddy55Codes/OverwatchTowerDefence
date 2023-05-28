@@ -1,0 +1,66 @@
+rule("[Win] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Winston;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 200;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+		Global.TitanFormSkills == 0;
+	}
+
+	actions
+	{
+		Event Player.MagicPts -= 200;
+		Global.TitanFormSkills = 1;
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 200 Mp to cast \"Titan Form\"", Hero Icon String(Hero(Winston)),
+			Event Player));
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Start Scaling Player(Event Player, 2, True);
+		Event Player.Health += 500;
+		Set Max Health(Event Player, Event Player.Health);
+		Event Player.Speed -= 100;
+		Set Move Speed(Event Player, Event Player.Speed);
+		Heal(Event Player, Null, 10000 * 10);
+		Wait(10, Ignore Condition);
+		Event Player.Health -= 500;
+		Set Max Health(Event Player, Event Player.Health);
+		Event Player.Speed += 100;
+		Set Move Speed(Event Player, Event Player.Speed);
+		Start Scaling Player(Event Player, 1, True);
+		Global.TitanFormSkills = 0;
+	}
+}
+
+rule("[Win] Skills 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	conditions
+	{
+		Global.TitanFormSkills == 1;
+	}
+
+	actions
+	{
+		Start Throttle In Direction(All Players(Team 1), Direction Towards(Event Player, Vector(87.846, 14.137, -102.579)), 1, To World,
+			Replace existing throttle, Direction and Magnitude);
+		Wait(10, Ignore Condition);
+		Start Throttle In Direction(All Players(Team 1), Direction Towards(Event Player, Vector(37.131, 9.703, -87.038)), 1, To World,
+			Replace existing throttle, Direction and Magnitude);
+		Global.TitanFormSkills = 0;
+	}
+}

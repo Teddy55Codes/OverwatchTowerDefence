@@ -1,0 +1,25 @@
+rule("[Combine] Diamond")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(111.856, 9.904, -30.043)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.TreasureMap >= 300;
+	}
+
+	actions
+	{
+		Event Player.TreasureMap -= 300;
+		Event Player.Item_Diamond += 1;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 75);
+		Big Message(Event Player, String("{0} {1} {2}", Custom String("[ ! ] "), Event Player, Custom String(
+			" Obtains 1 Diamond from combining treasure maps!")));
+	}
+}

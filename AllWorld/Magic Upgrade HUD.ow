@@ -1,0 +1,15 @@
+rule("[All World] Magic Upgrade HUD")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Ring, Color(Red), Vector(134.961, 15.913, -36.195), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), String("{0} {1} {2}", Custom String("[Press Reload to Upgrade] Mp Regeneration Up -"),
+			Custom String("1"), Custom String("Void Steel")), Vector(134.961, 15.913, -36.195), 1, Clip Against Surfaces,
+			Visible To Position and String, Color(Lime Green), Default Visibility);
+	}
+}

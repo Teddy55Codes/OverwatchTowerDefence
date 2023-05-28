@@ -1,0 +1,30 @@
+rule("[Junker Queen] Auto Charge")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Junker Queen;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(Random Integer(6, 15), Abort When False);
+		Stop Facing(Event Player);
+		Wait(0.100, Ignore Condition);
+		Set Facing(Event Player, Direction Towards(Event Player, Vector(37.131, 9.703, -87.038)), To World);
+		Play Effect(All Players(All Teams), Good Explosion, Color(Red), Event Player, 5);
+		Play Effect(All Players(All Teams), Debuff Impact Sound, Color(White), Event Player, 75);
+		Wait(0.500, Ignore Condition);
+		Press Button(Event Player, Button(Ability 1));
+		Wait(3, Ignore Condition);
+		Start Facing(Event Player, Direction Towards(Event Player, Closest Player To(Eye Position(Event Player), Team 2)), 300, To World,
+			Direction and Turn Rate);
+		Loop If Condition Is True;
+	}
+}

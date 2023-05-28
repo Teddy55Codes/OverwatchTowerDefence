@@ -1,0 +1,21 @@
+rule("[Ham] Auto Shoot On")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Wrecking Ball;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Is In Line of Sight(Event Player, Closest Player To(Eye Position(Event Player), Team 2), Barriers Do Not Block LOS) == True;
+		Is Using Ability 1(Event Player) == True;
+	}
+
+	actions
+	{
+		Stop Holding Button(Event Player, Button(Primary Fire));
+	}
+}

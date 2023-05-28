@@ -1,0 +1,12 @@
+rule("[Fbox] Main")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Chase Global Variable At Rate(FBoxtryopening, 0, Number Of Players(Team 2) * Global.Workshop_Fbox, Destination and Rate);
+	}
+}

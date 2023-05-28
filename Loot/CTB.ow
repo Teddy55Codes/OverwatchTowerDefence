@@ -1,0 +1,448 @@
+rule("[Loot] CTB 1 All Status Up")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 1;
+	}
+
+	actions
+	{
+		Event Player.HealingDealt += 1.250;
+		Set Healing Dealt(Event Player, Event Player.HealingDealt);
+		Event Player.HealingReceive += 2.500;
+		Set Healing Received(Event Player, Event Player.HealingReceive);
+		Event Player.Damage += 10;
+		Set Damage Dealt(Event Player, Event Player.Damage);
+		Event Player.Health += 10;
+		Set Max Health(Event Player, Event Player.Health);
+		Event Player.Speed += 3.375;
+		Set Move Speed(Event Player, Event Player.Speed);
+		Big Message(All Players(All Teams), String("{0} {1}", Event Player, Custom String(" obtains All Stats Up!")));
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 2 10k - 30k Pts 1 person")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 2;
+	}
+
+	actions
+	{
+		Event Player.Pointloot += Random Integer(10000 * 1 * Global.DifficultyMultiplier, 10000 * 3 * Global.DifficultyMultiplier);
+		Big Message(All Players(All Teams), String("{0} {1} {2}", Event Player, Custom String(" obtains "), String("{0} {1}",
+			Event Player.Pointloot, Custom String(" Pts from The Pandora Chest!"))));
+		Wait(0.200, Ignore Condition);
+		Event Player.Points += Event Player.Pointloot;
+		Event Player.Pointloot = 0;
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 3 Diamond")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 3;
+	}
+
+	actions
+	{
+		Big Message(All Players(All Teams), String("{0} {1} {2}", Hero Icon String(Hero Of(Event Player)), Event Player, Custom String(
+			" Found a Diamond while opening The Pandora Chest!")));
+		Event Player.Item_Diamond += 1;
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 4 5k - 10k Pts 6 person")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 4;
+	}
+
+	actions
+	{
+		All Players(Team 2).Pointloot += Random Integer(5000 * 1 * Global.DifficultyMultiplier, 10000 * 1 * Global.DifficultyMultiplier);
+		Big Message(All Players(All Teams), String("{0} {1} {2}", Event Player, Custom String(" obtains "), String("{0} {1}",
+			Event Player.Pointloot, Custom String(" Pts and share the money with you all!"))));
+		Wait(0.200, Ignore Condition);
+		All Players(Team 2).Points += Event Player.Pointloot;
+		Event Player.Pointloot = 0;
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 5 5 Oil Barrel")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 5;
+	}
+
+	actions
+	{
+		Event Player.Item_Oil += Random Integer(5, 20);
+		Big Message(Event Player, String("{0} {1}", Event Player, Custom String("received Oil Barrels..!")));
+		Wait(1, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 6 Hack")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 6;
+	}
+
+	actions
+	{
+		Big Message(All Players(All Teams), String("{0} {1}", Event Player, Custom String(
+			" Let's not do that again. (Hacked for 30 Seconds)")));
+		Wait(1, Ignore Condition);
+		Set Status(Event Player, Null, Hacked, 30);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 7 Treasure Map")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 7;
+	}
+
+	actions
+	{
+		Big Message(Event Player, String("{0} {1}", Event Player, Custom String(" Found Many Treasure maps!")));
+		Event Player.TreasureMap += Random Integer(1, 600);
+		Wait(1, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 8 Nap")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 8;
+	}
+
+	actions
+	{
+		Big Message(All Players(All Teams), String("{0} {1}", Event Player, Custom String(
+			" Oh, you look tired. (Asleep for 10 Seconds)")));
+		Wait(1, Ignore Condition);
+		Teleport(Event Player, Vector(123.298, 10.020, -27.348));
+		Wait(0.100, Ignore Condition);
+		Set Status(Event Player, Null, Asleep, 10);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 9 Mimic")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 9;
+	}
+
+	actions
+	{
+		Big Message(All Players(All Teams), String("{0} {1}", Event Player, Custom String(" found the Mimic Chest")));
+		Wait(1, Ignore Condition);
+		Kill(Event Player, Null);
+		Wait(0.100, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 10 ATK Up")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 10;
+	}
+
+	actions
+	{
+		Big Message(Event Player, String("{0} {1}", Event Player, Custom String(" received Damage Up!")));
+		Event Player.Damage += 40;
+		Set Damage Dealt(Event Player, Event Player.Damage);
+		Wait(1, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 11 ATK Down")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 11;
+	}
+
+	actions
+	{
+		Big Message(Event Player, String("{0} {1}", Event Player, Custom String(" received Damage Down!")));
+		Skip If(Event Player.Damage < 20, 2);
+		Event Player.Damage -= 40;
+		Set Damage Dealt(Event Player, Event Player.Damage);
+		Wait(1, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 12 Health Up")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 12;
+	}
+
+	actions
+	{
+		Big Message(Event Player, String("{0} {1}", Event Player, Custom String(" received Health Up!")));
+		Event Player.Health += 40;
+		Set Max Health(Event Player, Event Player.Health);
+		Wait(1, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 13 Health Down")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 13;
+	}
+
+	actions
+	{
+		Big Message(Event Player, String("{0} {1}", Event Player, Custom String(" received Health Down!")));
+		Skip If(Event Player.Health < 20, 2);
+		Event Player.Health -= 40;
+		Set Max Health(Event Player, Event Player.Health);
+		Wait(1, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 14 Speed Up")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 14;
+	}
+
+	actions
+	{
+		Big Message(Event Player, String("{0} {1}", Event Player, Custom String(" received Speed Up!")));
+		Event Player.Speed += 20;
+		Set Move Speed(Event Player, Event Player.Speed);
+		Wait(1, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 15 Speed Down")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 15;
+	}
+
+	actions
+	{
+		Big Message(Event Player, String("{0} {1}", Event Player, Custom String(" received Speed Down!")));
+		Skip If(Event Player.Speed < 20, 2);
+		Event Player.Speed -= 20;
+		Set Move Speed(Event Player, Event Player.Speed);
+		Wait(1, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 16 Bear Trap")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 16;
+	}
+
+	actions
+	{
+		Big Message(All Players(All Teams), String("{0} {1}", Event Player, Custom String(
+			" stepped onto a bear trap (Rooted for 20 Seconds)")));
+		Wait(1, Ignore Condition);
+		Set Status(Event Player, Null, Rooted, 20);
+		Wait(0.100, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 17 Shaved ice")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 17;
+	}
+
+	actions
+	{
+		Big Message(All Players(All Teams), String("{0} {1}", Event Player, Custom String(
+			" ate too much Shaved Ice (Frozen for 20 Seconds)")));
+		Wait(1, Ignore Condition);
+		Set Status(Event Player, Null, Frozen, 20);
+		Wait(0.100, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}
+
+rule("[Loot] CTB 18 Set on Fire")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.CursedBoxReward == 18;
+	}
+
+	actions
+	{
+		Big Message(All Players(All Teams), String("{0} {1}", Event Player, Custom String(
+			" was set on fire by the Mimic (Burning for 5 Seconds)")));
+		Set Status(Event Player, Null, Burning, 5);
+		Wait(5, Ignore Condition);
+		Damage(Event Player, Null, Max Health(Event Player) / 2);
+		Wait(0.100, Ignore Condition);
+		Event Player.CursedBoxReward = 0;
+	}
+}

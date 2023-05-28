@@ -1,0 +1,57 @@
+rule("[Ori] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Orisa;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 150;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+		Global.ColossalArmorSkills == 0;
+	}
+
+	actions
+	{
+		Event Player.MagicPts -= 150;
+		Global.ColossalArmorSkills = 1;
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 150 Mp to cast \"Colossal Armor\"", Hero Icon String(Hero(
+			Orisa)), Event Player));
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Wait(10, Ignore Condition);
+		Global.ColossalArmorSkills = 0;
+	}
+}
+
+rule("[Ori] Skills 2")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.BuffPenalty == 2;
+		Global.ColossalArmorSkills == 1;
+	}
+
+	actions
+	{
+		Play Effect(All Players(All Teams), Orisa Halt Implosion Effect, Color(White), Event Player, 3);
+		Event Player.DamageReceive -= 25;
+		Set Damage Received(Event Player, Event Player.DamageReceive);
+		Wait(10, Ignore Condition);
+		Event Player.DamageReceive += 25;
+		Set Damage Received(Event Player, Event Player.DamageReceive);
+		Global.ColossalArmorSkills = 0;
+	}
+}

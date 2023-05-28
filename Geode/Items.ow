@@ -1,0 +1,121 @@
+rule("[Geode] Uranium 1% 97-97")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.GeodeRandomItem == 97;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("+ 1 Uranium...!"));
+		Event Player.Item_Uranium += 1;
+		Big Message(All Players(All Teams), String("{0} {1} {2}", Hero Icon String(Hero Of(Event Player)), Event Player, Custom String(
+			" Found 1 {0} Uranium while processing geode!", Icon String(Radioactive))));
+	}
+}
+
+rule("[Geode] Diamond 3% 99-100")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.GeodeRandomItem >= 98;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("+1 Diamonds...!"));
+		Event Player.Item_Diamond += 1;
+		Big Message(All Players(All Teams), String("{0} {1} {2}", Hero Icon String(Hero Of(Event Player)), Event Player, Custom String(
+			" Found 1 Diamonds while processing geode!")));
+	}
+}
+
+rule("[Geode] The Pandora Chest 7% 91-97")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.GeodeRandomItem >= 91;
+		Event Player.GeodeRandomItem < 98;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("+ 1 The Pandora Chest ...!"));
+		Event Player.CursedBox += 1;
+	}
+}
+
+rule("[Geode] Mythril Ore 10% 81-90")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.GeodeRandomItem >= 81;
+		Event Player.GeodeRandomItem < 91;
+	}
+
+	actions
+	{
+		Event Player.mythril_get += Random Integer(10, 20);
+		Wait(0.200, Ignore Condition);
+		Small Message(Event Player, String("{0} {1} {2}", Custom String("+ "), Event Player.mythril_get, Custom String(
+			" Mythril Ore..!")));
+		Event Player.Item_Mythril += Event Player.mythril_get;
+		Wait(0.100, Ignore Condition);
+		Event Player.mythril_get = 0;
+	}
+}
+
+rule("[Geode] Quartz Crystal 80% 1-80")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.GeodeRandomItem >= 1;
+		Event Player.GeodeRandomItem < 81;
+	}
+
+	actions
+	{
+		Event Player.Quartz_get += Random Integer(1, 10);
+		Wait(0.200, Ignore Condition);
+		Small Message(Event Player, String("{0} {1} {2}", Custom String("+ "), Event Player.Quartz_get, Custom String(
+			" Quartz Crystal..!")));
+		Event Player.Item_Quartz += Event Player.Quartz_get;
+		Wait(0.100, Ignore Condition);
+		Event Player.Quartz_get = 0;
+	}
+}

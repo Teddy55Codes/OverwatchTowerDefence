@@ -1,0 +1,25 @@
+rule("[Fbox] Timed Out")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.FboxOpening == 1;
+	}
+
+	actions
+	{
+		Wait(45, Abort When False);
+		Global.FboxOpening = 0;
+		Destroy Effect(Global.FboxSave[0]);
+		Destroy Progress Bar In-World Text(Global.FboxSave[1]);
+		Destroy Effect(Global.FboxSave[2]);
+		Global.FBoxChance = Empty Array;
+		Global.FBoxtryopening = Empty Array;
+		Big Message(All Players(All Teams), Custom String("The Ancient Chest has been stolen (Timed out)"));
+		Destroy Icon(Global.GuideSave[0]);
+	}
+}

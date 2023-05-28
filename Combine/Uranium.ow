@@ -1,0 +1,25 @@
+rule("[Combine] Uranium")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(135.022, 12.303, -28.823)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.TreasureMap >= 750;
+	}
+
+	actions
+	{
+		Event Player.TreasureMap -= 750;
+		Event Player.Item_Uranium += 1;
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 75);
+		Big Message(All Players(All Teams), String("{0} {1} {2}", Custom String("[ ! ] "), Event Player, Custom String(
+			" Obtains 1 {0} Uranium from combining treasure maps!", Icon String(Radioactive))));
+	}
+}

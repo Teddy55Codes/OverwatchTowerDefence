@@ -1,0 +1,22 @@
+rule("[Supercomputer]")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.Magic_to_Point > 0;
+	}
+
+	actions
+	{
+		Event Player.Points += Event Player.Magic_to_Point;
+		Small Message(Event Player, Custom String("Earned +{0} Points from Supercomputer", Event Player.Magic_to_Point));
+		Wait(30, Ignore Condition);
+		Loop;
+	}
+}

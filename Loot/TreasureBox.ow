@@ -1,0 +1,31 @@
+rule("[Loot] TreasureBox")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.LootBox > 0;
+		Distance Between(Event Player, Vector(59.776, 6.175, -95.982)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		disabled Small Message(Event Player, Custom String("Opening Premium Treasure Chest! 1.."));
+		Wait(0.500, Abort When False);
+		Event Player.LootBox -= 1;
+		Event Player.Pointloot = Random Integer(1000 * Global.DifficultyMultiplier, Global.DifficultyMultiplier * 8000);
+		Small Message(Event Player, String("{0} {1} {2}", Custom String("You got "), Event Player.Pointloot, Custom String(
+			" Pts from Premium Treasure Chest!!")));
+		Wait(0.500, Ignore Condition);
+		Event Player.Points += Event Player.Pointloot;
+		Event Player.Pointloot = 0;
+		Loop If Condition Is True;
+	}
+}

@@ -1,0 +1,15 @@
+rule("[DiamondSell] HUD")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create In-World Text(All Players(All Teams), String("{0} {1}", Custom String("[Sell] -1 Diamond (Reload) | +"), String("{0} {1}",
+			Global.DiamondSellPrice, Custom String(" Points"))), Vector(-3.570, 3.176, -36.791), 1, Clip Against Surfaces,
+			Visible To Position and String, Color(Yellow), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Red), Vector(-3.570, 3.176, -36.791), 2, Visible To Position and Radius);
+	}
+}

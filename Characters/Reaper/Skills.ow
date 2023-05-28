@@ -1,0 +1,35 @@
+rule("[Reap] Skills")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		Reaper;
+	}
+
+	conditions
+	{
+		Event Player.MagicPts >= 200;
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+		Event Player.BuffPenalty == 2;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.MagicPts -= 200;
+		Small Message(All Players(All Teams), Custom String("{0} {1} Spent 200 Mp to cast \"Death Blossom\"", Hero Icon String(Hero(
+			Reaper)), Event Player));
+		Set Ultimate Charge(Event Player, 100);
+		Press Button(Event Player, Button(Ultimate));
+		Event Player.Damage += 300;
+		Set Damage Dealt(Event Player, Event Player.Damage);
+		Event Player.Speed += 600;
+		Set Move Speed(Event Player, Event Player.Speed);
+		Wait(3, Ignore Condition);
+		Event Player.Damage -= 300;
+		Set Damage Dealt(Event Player, Event Player.Damage);
+		Event Player.Speed -= 600;
+		Set Move Speed(Event Player, Event Player.Speed);
+	}
+}

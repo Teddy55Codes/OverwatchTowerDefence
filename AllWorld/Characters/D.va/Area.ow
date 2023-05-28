@@ -1,0 +1,26 @@
+rule("[All World] D.va Area -7 And Hack")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		D.Va;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Distance Between(Event Player, Vector(39.261, 9.470, -87.568)) <= 8;
+	}
+
+	actions
+	{
+		Global.Heart -= Global.DifficultyMultiplier * 7;
+		Wait(0.500, Ignore Condition);
+		Kill(Event Player, Null);
+		Play Effect(All Players(All Teams), Sombra EMP Explosion Effect, Color(White), Vector(39.261, 9.470, -87.568), 100);
+		Play Effect(All Players(All Teams), Sombra Logo Sound, Color(White), Event Player, 100);
+		Wait(1, Ignore Condition);
+		Kill(Event Player, Null);
+	}
+}

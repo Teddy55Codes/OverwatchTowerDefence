@@ -1,0 +1,16 @@
+rule("[Prestige] HUD")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Ring, Color(Blue), Vector(24.258, 2.079, -9.804), 2, Visible To Position and Radius);
+		Create Effect(All Players(All Teams), Sparkles, Color(Blue), Vector(24.258, 2.079, -9.804), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), String("{0} {1} {2}", Custom String(
+			"[Prestige] Reset Enchant Level | +2 Mp Regeneration -"), 1, Custom String("Cosmic Steel (Hold Reload)")), Vector(24.258,
+			2.079, -9.804), 1, Clip Against Surfaces, Visible To Position and String, Color(Purple), Default Visibility);
+	}
+}

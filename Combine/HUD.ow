@@ -1,0 +1,23 @@
+rule("[Combine] HUD")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	actions
+	{
+		Create Effect(All Players(All Teams), Ring, Color(Aqua), Vector(93.966, 12.074, -35.155), 1.900, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Combine] +1 Oil Barrel -30 Treasure Maps"), Vector(93.966, 12.074,
+			-35.155), 1, Clip Against Surfaces, Visible To Position and String, Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Aqua), Vector(118.238, 10.070, -48.792), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Combine] +1 The Pandora Chest -100 Treasure Maps"), Vector(118.238,
+			10.070, -48.792), 1, Clip Against Surfaces, Visible To Position and String, Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Aqua), Vector(111.856, 9.904, -30.043), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Combine] +1 Diamond -300 Treasure Maps"), Vector(111.856, 9.904,
+			-30.043), 1, Clip Against Surfaces, Visible To Position and String, Color(Lime Green), Default Visibility);
+		Create Effect(All Players(All Teams), Ring, Color(Aqua), Vector(135.022, 12.303, -28.823), 2, Visible To Position and Radius);
+		Create In-World Text(All Players(All Teams), Custom String("[Combine] +1 Uranium -750 Treasure Maps"), Vector(135.022, 12.303,
+			-28.823), 1, Clip Against Surfaces, Visible To Position and String, Color(Lime Green), Default Visibility);
+	}
+}

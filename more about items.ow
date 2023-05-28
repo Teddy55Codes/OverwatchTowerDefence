@@ -1,0 +1,43 @@
+rule("more about items")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Jump)) == True;
+	}
+
+	actions
+	{
+		Wait(1, Abort When False);
+		Small Message(Event Player, Custom String("\"The Pandora Chest\" can be found from killing monster"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"The Premium Chest\" can be found from killing monster"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"Treasure Map\" can be found from killing monster or The Pandora Chest"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"Diamond\" can be found from digging for treasure or processing Geode"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"Geode\" can be found from digging for treasure"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"Oil Barrel\" can be found from digging for treasure or The Pandora Chest"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"Quartz Crystal\" can be found from processing Geode"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"Mythril Ore\" can be found from digging for treasure or processing Geode"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"Uranium\" can be found from processing geode"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"Nebula Ore\" can be found from Nuclear Drill"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"Void Steel\" can be found from processing Nebula Ore"));
+		Wait(2, Abort When False);
+		Small Message(Event Player, Custom String("\"Cosmic Steel\" can be found from processing Nebula Ore"));
+		Wait(2, Abort When False);
+	}
+}

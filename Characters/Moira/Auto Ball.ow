@@ -1,0 +1,23 @@
+rule("[Moira] Auto Ball")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Moira;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(Random Integer(2, 4), Abort When False);
+		Press Button(Event Player, Button(Ability 2));
+		Wait(1, Abort When False);
+		Press Button(Event Player, Button(Secondary Fire));
+		Loop If Condition Is True;
+	}
+}

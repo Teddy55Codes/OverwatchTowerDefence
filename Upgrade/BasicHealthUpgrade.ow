@@ -1,0 +1,27 @@
+rule("[Upgrade] BasicHealthUpgrade")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(56.764, 13.146, -74.066)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Points >= 600 * Global.DifficultyMultiplier * Global.GlobalEventHealth;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Points -= 600 * Global.DifficultyMultiplier * Global.GlobalEventHealth;
+		Event Player.Health += 2;
+		Set Max Health(Event Player, Event Player.Health);
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 20);
+		Wait(0.100, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

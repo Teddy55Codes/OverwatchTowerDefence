@@ -1,0 +1,21 @@
+rule("[D.va] Auto Missile")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		D.Va;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Press Button(Event Player, Button(Ability 2));
+		Wait(Random Integer(3, 8), Abort When False);
+		Loop If Condition Is True;
+	}
+}

@@ -1,0 +1,20 @@
+rule("[All World] Prevent Pit")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		All;
+	}
+
+	conditions
+	{
+		Y Component Of(Position Of(Event Player)) <= 0.500;
+	}
+
+	actions
+	{
+		Set Status(Event Player, Null, Frozen, 0.500);
+		Teleport(Event Player, Vector(59.755, 10, -96.690));
+	}
+}

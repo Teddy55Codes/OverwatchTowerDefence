@@ -1,0 +1,19 @@
+rule("[Teleport] Base Fallback")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Is Communicating(Event Player, Fall Back) == True;
+	}
+
+	actions
+	{
+		Teleport(Event Player, Vector(39.575, 9.335, -87.635));
+	}
+}

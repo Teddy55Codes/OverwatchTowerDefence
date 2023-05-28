@@ -1,0 +1,22 @@
+disabled rule("Debug")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Is Button Held(Event Player, Button(Ultimate)) == True;
+	}
+
+	actions
+	{
+		Wait(1.500, Ignore Condition);
+		disabled Set Ultimate Charge(Event Player, 100);
+		Set Status(Event Player, Null, Invincible, 9999);
+		Set Status(Event Player, Null, Unkillable, 9999);
+	}
+}

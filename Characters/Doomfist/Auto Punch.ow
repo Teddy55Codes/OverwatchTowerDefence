@@ -1,0 +1,23 @@
+rule("[Doomfist] Auto Punch")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Doomfist;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Wait(Random Integer(2, 5), Abort When False);
+		Start Holding Button(Event Player, Button(Secondary Fire));
+		Wait(Random Integer(0.500, 3), Abort When False);
+		Stop Holding Button(Event Player, Button(Secondary Fire));
+		Loop If Condition Is True;
+	}
+}

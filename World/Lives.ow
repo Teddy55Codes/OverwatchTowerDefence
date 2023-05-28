@@ -1,0 +1,99 @@
+rule("[World] Normal Lives")
+{
+	event
+	{
+		Player Died;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Global.DifficultyMultiplier == 1;
+	}
+
+	actions
+	{
+		Global.GlobalLife -= 5;
+	}
+}
+
+rule("[World] Hard Lives")
+{
+	event
+	{
+		Player Died;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Global.DifficultyMultiplier == 2;
+	}
+
+	actions
+	{
+		Global.GlobalLife -= 6.667;
+	}
+}
+
+rule("[World] Suicidal Lives")
+{
+	event
+	{
+		Player Died;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Global.DifficultyMultiplier == 3;
+	}
+
+	actions
+	{
+		Global.GlobalLife -= 8.334;
+	}
+}
+
+rule("[World] Hell on Earth Lives")
+{
+	event
+	{
+		Player Died;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Global.DifficultyMultiplier == 4;
+	}
+
+	actions
+	{
+		Global.GlobalLife -= 11.112;
+	}
+}
+
+rule("[World] Infernal Nightmare Lives")
+{
+	event
+	{
+		Player Died;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Global.DifficultyMultiplier == 5;
+	}
+
+	actions
+	{
+		Global.GlobalLife -= 16.667;
+	}
+}

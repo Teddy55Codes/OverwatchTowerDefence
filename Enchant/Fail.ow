@@ -1,0 +1,38 @@
+rule("[Enchant] Fail")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Event Player.EnchantChance > 1;
+		Distance Between(Event Player, Vector(96.735, 17.116, -22.764)) <= 2.500;
+	}
+
+	actions
+	{
+		Play Effect(All Players(All Teams), Debuff Impact Sound, Color(White), Event Player, 40);
+		Play Effect(All Players(All Teams), Bad Pickup Effect, Color(Red), Event Player, 1);
+		Event Player.EnchantFail = Empty Array;
+		Event Player.EnchantFail = Random Integer(0, 1);
+		Wait(0.100, Ignore Condition);
+		Event Player.Item_Mythril += 1;
+		Event Player.Damage -= Event Player.EnchantLevel * Event Player.EnchantFail;
+		Event Player.Health -= Event Player.EnchantLevel * Event Player.EnchantFail;
+		Event Player.HealingReceive -= Event Player.EnchantLevel * Event Player.EnchantFail;
+		Event Player.Speed -= Event Player.EnchantLevel / 2 * Event Player.EnchantFail;
+		Event Player.HealingDealt -= Event Player.EnchantLevel * Event Player.EnchantFail;
+		Wait(0.250, Ignore Condition);
+		Event Player.EnchantLevel -= Event Player.EnchantFail;
+		Small Message(Event Player, Custom String("Failed, Enhancement Level -{0}", Event Player.EnchantFail));
+		Set Damage Dealt(Event Player, Event Player.Damage);
+		Set Max Health(Event Player, Event Player.Health);
+		Set Move Speed(Event Player, Event Player.Speed);
+		Set Healing Dealt(Event Player, Event Player.HealingDealt);
+		Event Player.HealingReceive = Event Player.HealingReceive;
+	}
+}

@@ -1,0 +1,22 @@
+rule("[Mccree] Auto Shoot ---------------------------------------------------*********************************************************")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Cassidy;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Is In Line of Sight(Event Player, Closest Player To(Eye Position(Event Player), Team 2), Barriers Do Not Block LOS) == True;
+	}
+
+	actions
+	{
+		Wait(3, Abort When False);
+		Press Button(Event Player, Button(Primary Fire));
+		Loop If Condition Is True;
+	}
+}

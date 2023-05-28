@@ -1,0 +1,22 @@
+rule("[Sombra] Auto Stealt")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 1;
+		Sombra;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Is Using Ability 1(Event Player) == False;
+	}
+
+	actions
+	{
+		Press Button(Event Player, Button(Ability 1));
+		Wait(1, Abort When False);
+		Loop If Condition Is True;
+	}
+}

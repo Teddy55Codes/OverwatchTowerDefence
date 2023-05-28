@@ -1,0 +1,20 @@
+rule("[PowerCoreUpgrade]")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.InsertQuartz == 100;
+	}
+
+	actions
+	{
+		Global.PowerCoreLevel += 10;
+		Global.InsertQuartz = 0;
+		Big Message(All Players(All Teams), String("{0}: {1}", Custom String(
+			"The capacity of the Nuclear Reactor Core has been increased "), Global.PowerCoreLevel));
+	}
+}

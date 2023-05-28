@@ -1,0 +1,22 @@
+rule("[Tracer] Auto Warp no Cri")
+{
+	event
+	{
+		Player Took Damage;
+		Team 1;
+		Tracer;
+	}
+
+	conditions
+	{
+		Is Alive(Event Player) == True;
+		Event Was Critical Hit == False;
+	}
+
+	actions
+	{
+		Press Button(Event Player, Button(Ability 1));
+		Set Ability Cooldown(Event Player, Button(Ability 1), 1);
+		Wait(1, Abort When False);
+	}
+}

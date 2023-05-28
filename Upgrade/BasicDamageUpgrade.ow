@@ -1,0 +1,27 @@
+rule("[Upgrade] BasicDamageUpgrade")
+{
+	event
+	{
+		Ongoing - Each Player;
+		All;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(54.707, 13.179, -80.954)) <= 2.500;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.Points >= 3200 * Global.DifficultyMultiplier * Global.GlobalEventAtk;
+		Is Alive(Event Player) == True;
+	}
+
+	actions
+	{
+		Event Player.Points -= 3200 * Global.DifficultyMultiplier * Global.GlobalEventAtk;
+		Event Player.Damage += 2;
+		Set Damage Dealt(Event Player, Event Player.Damage);
+		Play Effect(All Players(All Teams), Buff Explosion Sound, Color(White), Event Player, 20);
+		Wait(0.100, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}

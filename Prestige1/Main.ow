@@ -1,0 +1,79 @@
+rule("[Prestige1] Main (Use GuideSave6)")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(24.258, 2.079, -9.804)) <= 2.500;
+		Event Player.Item_Cosmic >= 1;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.EnchantLevel == 10;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("prestige! ...3"));
+		Wait(1, Abort When False);
+		Small Message(Event Player, Custom String("prestige! ...2"));
+		Wait(1, Abort When False);
+		Small Message(Event Player, Custom String("prestige! ...1"));
+		Wait(1, Abort When False);
+		Event Player.Item_Cosmic -= 1;
+		Event Player.EnchantLevel = 0;
+		Wait(0.100, Ignore Condition);
+		Event Player.Prestige += 1;
+		Big Message(All Players(All Teams), String("{0} {1} {2}", Hero Icon String(Hero Of(Event Player)), Event Player, String("{0} {1}",
+			Custom String(" has just achieved Prestige Rank : "), Event Player.Prestige)));
+		Event Player.MagicRegen += 2;
+	}
+}
+
+rule("[Prestige1] Can't upgrade lv")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(24.258, 2.079, -9.804)) <= 2.500;
+		disabled Event Player.Points >= 10000 * 5;
+		Is Button Held(Event Player, Button(Reload)) == True;
+		Event Player.EnchantLevel != 10;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("You need to reach Enhancement Level 10 first."));
+	}
+}
+
+disabled rule("[Prestige1] Can't upgrade cost")
+{
+	event
+	{
+		Ongoing - Each Player;
+		Team 2;
+		All;
+	}
+
+	conditions
+	{
+		Distance Between(Event Player, Vector(24.258, 2.079, -9.804)) <= 2.500;
+		Event Player.Points < 10000 * 5 * Global.DifficultyMultiplier;
+		Is Button Held(Event Player, Button(Reload)) == True;
+	}
+
+	actions
+	{
+		Small Message(Event Player, Custom String("You don't have enough points."));
+	}
+}

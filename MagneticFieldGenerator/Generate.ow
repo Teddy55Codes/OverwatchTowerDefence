@@ -1,0 +1,22 @@
+rule("[Magnetic Field Generator]")
+{
+	event
+	{
+		Ongoing - Global;
+	}
+
+	conditions
+	{
+		Global.Magic_to_Repair > 0;
+		Global.Heart < Global.PowerCoreLevel;
+	}
+
+	actions
+	{
+		Global.Heart += Global.Magic_to_Repair;
+		Small Message(All Players(All Teams), Custom String("Repaired the Base +{0} HP from Magnetic Field Generator",
+			Global.Magic_to_Repair));
+		Wait(120, Ignore Condition);
+		Loop If Condition Is True;
+	}
+}
