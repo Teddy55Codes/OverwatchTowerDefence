@@ -1,0 +1,159 @@
+settings
+{
+	main
+	{
+		Description: "<FG40E0D0F>Just Tower Defense V.20.03.25.23 That's it!! #KurenoDesu"
+		Mode Name: "Tower Defence 20.25"
+	}
+
+	lobby
+	{
+		Match Voice Chat: Enabled
+		Max Spectators: 12
+		Max Team 1 Players: 0
+		Max Team 2 Players: 6
+		Return To Lobby: Never
+		Swap Teams After Match: No
+	}
+
+	modes
+	{
+		Skirmish
+		{
+			enabled maps
+			{
+				Eichenwalde 972777519512068292 972777519512068154
+				Eichenwalde Halloween 972777519512063901
+			}
+		}
+
+		General
+		{
+			Game Mode Start: Immediately
+			Kill Cam: Off
+			Respawn Time Scalar: 25%
+		}
+	}
+
+	heroes
+	{
+		Team 1
+		{
+			Cassidy
+			{
+				Magnetic Grenade Cooldown Time: 0%
+				No Ammunition Requirement: On
+			}
+
+			D.Va
+			{
+				Defense Matrix Maximum Time: 500%
+				Defense Matrix Recharge Rate: 500%
+				Micro Missiles Cooldown Time: 0%
+			}
+
+			Doomfist
+			{
+				Power Block Cooldown Time: 0%
+				Rocket Punch Cooldown Time: 0%
+				Rocket Punch Knockback Scalar: 200%
+				Seismic Slam Cooldown Time: 0%
+			}
+
+			Genji
+			{
+				Deflect Cooldown Time: 0%
+			}
+
+			Lúcio
+			{
+				Jump Vertical Speed: 115%
+				Movement Gravity: 80%
+				Soundwave Cooldown Time: 0%
+				Soundwave Knockback Scalar: 125%
+			}
+
+			Moira
+			{
+				Biotic Orb Cooldown Time: 0%
+				Biotic Orb Max Damage Scalar: 25%
+			}
+
+			Orisa
+			{
+				Javelin Spin Cooldown Time: 0%
+			}
+
+			Reinhardt
+			{
+				Charge Cooldown Time: 0%
+				Charge Knockback Scalar: 300%
+			}
+
+			Roadhog
+			{
+				Healing Dealt: 25%
+			}
+
+			Sombra
+			{
+				Stealth Cooldown Time: 0%
+			}
+
+			Tracer
+			{
+				Blink Cooldown Time: 0%
+				No Ammunition Requirement: On
+			}
+
+			Winston
+			{
+				No Ammunition Requirement: On
+			}
+
+			Zarya
+			{
+				No Ammunition Requirement: On
+				Particle Barrier Cooldown Time: 25%
+				Particle Cannon Secondary Knockback Scalar: 150%
+			}
+		}
+
+		Team 2
+		{
+			Ultimate Generation - Passive: 500%
+
+			Junkrat
+			{
+				Concussion Mine Knockback Scalar: 50%
+			}
+		}
+
+		General
+		{
+			Ultimate Generation: 150%
+			Ultimate Generation - Combat: 0%
+
+			disabled heroes
+			{
+				Lifeweaver
+			}
+		}
+	}
+
+	workshop
+	{
+		Difficulty: [1]
+	}
+
+	extensions
+	{
+		Beam Sounds
+		Buff and Debuff Sounds
+		Energy Explosion Effects
+		Kinetic Explosion Effects
+		Explosion Sounds
+		Play More Effects
+		Spawn More Dummy Bots
+	}
+}
